@@ -1,0 +1,40 @@
+body{
+    margin: 0%;
+}
+
+.divNav {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: gray;
+}
+
+.logo {
+    position: absolute;
+    top: 2%;
+    width: 15%;
+}
+
+
+.divNav a{
+    position: relative;
+    justify-content: baseline;
+    margin-right: 20px;
+    left: 87%; 
+    top: 30%;
+    background-color: aliceblue;
+    height: 20%;
+    padding: 0.5%;
+    border-radius: 5px;
+}
+
+p{
+    text-align: center;
+}
+
+.footer{
+    margin-top: 9.3%;
+    height: 50px;
+    background-color: gray;
+    bottom: 100%;
+}

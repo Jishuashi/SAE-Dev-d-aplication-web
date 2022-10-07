@@ -1,0 +1,56 @@
+.content{
+    width: 300px;
+    height: 500px;
+    background-color: gray;
+    border-radius: 25px;
+    
+    position: relative;
+
+    left: 40%;
+    margin-top: 5%;
+}
+
+.logo{
+    position: relative;
+    width: 40%;
+    left: 30%;
+}
+
+.content form{
+    width: auto;
+    width: auto;
+}
+
+.content form .input{
+    position: relative;
+    margin-bottom: 15px;
+    left: 15%;
+    top: 70%;
+
+    width: 200px;
+}
+
+.util{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 210px;
+    left: 15%;
+}
+
+button{
+    position: relative;
+    left: 35%;
+}
+
+.signUp{
+    position: relative;
+    left: 25%;
+    margin-top: 2%;
+}
+
+.return{
+    padding: 0.5%;
+    background-color: grey;
+    border-radius: 10px;
+}
