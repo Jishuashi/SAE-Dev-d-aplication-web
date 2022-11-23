@@ -1,0 +1,55 @@
+#logo{
+    position: relative;
+    width: 10%;
+    left: 2.5%;
+}
+
+.navbar {
+    background-color: darkslateblue;
+    height: 75px;
+    display: flex;
+    position: sticky;
+    align-items: center;
+    cursor: pointer;
+}
+
+.nav-list {
+    width: 50%;
+    display: flex;
+}
+
+.nav-list li {
+    list-style: none;
+    padding: 26px 30px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: white;
+}
+
+
+.nav-list li a:hover {
+    color: black;
+}
+
+.rightNav {
+    width: 70%;
+    position: relative;
+    left: 15%;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.rightNav a{
+    text-decoration: none;
+    color: white;
+}
+
+.rightNav a:hover {
+    color: black;
+}
+
+.link{
+    margin-left: 2%;
+}
