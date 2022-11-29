@@ -261,4 +261,33 @@ Informations connexes :
 >Autre fonctionnalité : le client pourra communiquer aux dev pour l’ajout d’un éventuel module/domaine
 Le client ne comprend pas un module, un système d’aide est mis en place ou une communication possible aux dev
 
+### b) Règles métier 
+>Cadre et limite les actions pour qu’elles suivent la stratégie de l’entreprise. Permet un gain de temps et de performance (pose les réponses définis avant les questions), moins de risques sur le projet
+>Conditions pour utiliser l’appli : l’utilisateur doit créer un compte. Si compte, alors accède aux fonctionnalités. Sinon, accède juste à la page d’accueil.
+>Accepter les conditions d’utilisation. Des droits ont été mis en place pour les contrats informatiques. En créant son compte, le client s’engage à respecter les conditions que nous avons mises en place.
+>Performance organisationnelle : élaboration et attribution des tâches sur trello. Chaque semaine correspond à un sprint (~livrable). Chacun d’entre nous à des tâches affectées, où d'autres y sont aussi. Elles sont indépendantes entre elles et doivent être réalisées pour un jour précis. 
+### c) Opération, sécurité, documentation 
+>Les utilisateurs auront accès à une vidéo explicative, présentant les fonctionnalités de l’appli. (Un système de communication avec les développeurs en cas de problèmes ou de questions). Une page dédiée pour les conditions/mentions légales est à disponibilité. 
 
+>Les mots de passe ne sont pas accessibles par l’admin. Si un utilisateur veut le récupérer, il sera redirigé sur une page en construction.
+
+>Les mots de passe sont cryptés.
+### d) Utilisation et Utilisabilité
+>Les utilisateurs inscrits auront accès au nombreux modules proposés dans différents domaines. Les modules reçoivent un jeu de données par l’utilisateur et effectue des calcules/simulation sur ce jeu pour renvoyer un résultat 
+
+### e) Maintenance et portabilité
+
+>L’application propose un certain nombre de modules/domaines par défaut. Cependant, les utilisateurs qui souhaitent implémenter des modules pourront nous contacter. De cette façon, nous verrons si nous implémentons ses modules à notre applis. Il en va de même si l’utilisateur souhaite un module mais qui ne sait pas coder, il pourra nous faire une demande de programmation de celui-ci, qui suivra une potentielle implémentation. 
+
+## 6. Chapitre 6 – Recours humain, questions juridiques, politiques, organisationnelles.
+
+### a) Quel est le recours humain au fonctionnement du système ?
+>L’utilisateur doit activer le système de lui-même pour le changement de page en cliquant sur les boutons correspondant aux différentes pages.
+### b) Quelles sont les exigences juridiques et politiques ?
+>Etant donné que nous allons stocker des données, il faut respecter le RGPD (Règlement Général sur la Protection des Données)
+### c) Quelles sont les conséquences humaines de la réalisation du système ?
+>Il n’y a pas de conséquences humaines à la réalisation de ce système. En effet, des sites existent déjà pour calculer les modules que nous allons faire. 
+### d) Quels sont les besoins en formation ?
+>L’équipe doit se former en JavaScript et ReactJS car nous comptons utiliser ces deux technologies dans notre application Web
+### e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?
+>/
