@@ -1,0 +1,24 @@
+.ytplayer{
+    position: absolute;
+    left: 26%;
+    top: 15%
+}
+
+.text{
+    position: absolute;
+    left: 16%;
+    top: 60%;
+    width: 896px;
+    text-align: justify;
+}
+
+.linkHome{
+    position: absolute;
+    left: 45%;
+    top: 75%;
+    border: solid black 2px;
+    border-radius: 2px;
+    color: white;
+    background: black;
+    text-decoration: none;
+}
