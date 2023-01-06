@@ -6,37 +6,48 @@ import human from "../assets/human.svg";
 import {Link} from "react-router-dom";
 
 function Sign(){
+
+    function requestPhp(){
+        var request = new XMLHttpRequest();
+        //Cette ligne passe de http://localhost:8000 (Version de développement) à http://localhost:80 en version de déploiment
+        request.open('POST', 'http://localhost:8000/index.php');
+        request.send();
+
+        console.log(request.status);
+        console.log(request.readyState);
+    }
+
     return(
         <div className="card">
         <h4 className="title">Sign In!</h4>
-        <form>
+        <form onSubmit={requestPhp}>
             <div className="field">
-            <img src={human} className="input-icon"></img>
+            <img src={human} alt="human" className="input-icon"></img>
             <input autoComplete="off" id="firstname" placeholder="Prénom" className="input-field" name="firstname"
                    type="text"/>
             </div>
             <div className="field">
-                <img src={human} className="input-icon"></img>
+                <img src={human} alt="human" className="input-icon"></img>
                 <input autoComplete="off" id="name" placeholder="Nom" className="input-field" name="name"
                        type="text"/>
             </div>
             <div className="field">
-                <img src={email} className="input-icon"></img>
+                <img src={email} alt="email" className="input-icon"></img>
                 <input autoComplete="off" id="logemail1" placeholder="Email" className="input-field" name="signmail"
                        type="email"/>
             </div>
             <div className="field">
-                <img src={email} className="input-icon"></img>
+                <img src={email} alt="email" className="input-icon"></img>
                 <input autoComplete="off" id="logemail2" placeholder="Confirmation d'email" className="input-field" name="signmail"
                        type="email"/>
             </div>
             <div className="field">
-                <img src={lock} className="input-icon"></img>
+                <img src={lock} alt="lock" className="input-icon"></img>
                 <input autoComplete="off" id="logpass" placeholder="Mot de passe" className="input-field" name="signpass"
                        type="password"/>
             </div>
             <div className="field">
-                <img src={lock} className="input-icon"></img>
+                <img src={lock} alt="lock" className="input-icon"></img>
                 <input autoComplete="off" id="logpass" placeholder="Confirmation de mot de passe" className="input-field" name="signpass" type="password"/>
             </div>
             <div className="useTerm">
