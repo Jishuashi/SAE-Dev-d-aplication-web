@@ -11,6 +11,7 @@ function Navigation(){
     return(<div className="divNav">
         <nav className="navbar">
             <img src={logo} id="logo" alt="logo"/>
+            <Link path="/home">Home</Link>
             <div className="rightNav">
                 <Link className="link" to="/connexion">S'identifier</Link>
                 <Link className="link" to="/inscription">S'inscrire</Link>

@@ -10,19 +10,19 @@ function Login() {
             <h4 className="title">Log In!</h4>
             <form>
                 <div className="field">
-                    <img src={email} className="input-icon"/>
+                    <img src={email} alt="email" className="input-icon"/>
                     <input autoComplete="off" id="logemail" placeholder="Email" className="input-field" name="logemail"
                            type="email"/>
                 </div>
                 <div className="field">
-                    <img src={lock} className="input-icon"/>
+                    <img src={lock} alt="lock" className="input-icon"/>
                     <input autoComplete="off" id="logpass" placeholder="Password" className="input-field" name="logpass"
                            type="password"/>
                 </div>
                 <button className="btn" type="submit">Login</button>
-                <Link href="#" className="btn-link">Forgot your password?</Link>
+                <Link path="/inscription" className="btn-link">Forgot your password?</Link>
             </form>
-            <a><Link className="btn-link" to="/inscription">Pas de compte ?</Link></a>
+            <Link className="btn-link" to="/inscription">Pas de compte ?</Link>
         </div>
     );
 }
