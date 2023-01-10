@@ -1,13 +1,28 @@
 window.onload = init
+/*Sigma et m représente les paramètres de la loi normal
+m est l'espérence
+sigma l'écart type
+t la probabilité à calculer, soit p(x<t)
+n est l'échelle, soit le nombre de point entre x et x+1
+ */
 let sigma = 1
 let m = 0
 let t = 1
 let arrondi = 100000.0
-
-function init(){
-
+const n = 10
+/*"Placement des points" a et b
+Ils seront l'interval à calculer, soit p(t<x<m) si t<m
+sinon p(m<x<t)
+ */
+let a = 0
+let b =0
+if(t>m){
+    a = m
+    b = Math.abs(t)
+}else {
+    a = Math.abs(t)
+    b = m
 }
-
 
 
 /**
