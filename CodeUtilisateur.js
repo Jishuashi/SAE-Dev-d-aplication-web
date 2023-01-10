@@ -32,3 +32,9 @@ function convertiProba(number){
     }
     return Math.round((0.5-number)*arrondi)/arrondi
 }
+
+function afficheMoi(text, number){
+    var result = document.getElementById("simpson")
+    result.appendChild(document.createTextNode(text+": "+number.toString()))
+    result.appendChild(document.createElement("br"))
+}
