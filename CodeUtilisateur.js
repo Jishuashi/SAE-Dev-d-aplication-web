@@ -23,7 +23,32 @@ if(t>m){
     a = Math.abs(t)
     b = m
 }
+function init(){
+    rectangle()
+}
 
+
+function rectangle(){
+    var k = a
+    var sommeRectangleGauche =0
+    var sommeRectangleDroit =0
+    var sommeMedian=0
+    while (k<=b-0.1){
+        sommeRectangleGauche += loiNormal(k)
+        sommeMedian += loiNormal((k+k+0.1)/2)
+        k = Math.round((k+0.1)*10.0)/10.0
+        sommeRectangleDroit += loiNormal(k)
+    }
+    sommeRectangleGauche *= (b-a)/n
+    sommeRectangleDroit *= (b-a)/n
+    sommeMedian *= (b-a)/n
+    sommeRectangleDroit = convertiProba(sommeRectangleDroit)
+    sommeRectangleGauche = convertiProba(sommeRectangleGauche)
+    sommeMedian = convertiProba(sommeMedian)
+    afficheMoi("Gauche",sommeRectangleGauche)
+    afficheMoi("Droit",sommeRectangleDroit)
+    afficheMoi("Median",sommeMedian)
+}
 
 /**
  * Calcule la valeur de la loi normal en x abcisse
