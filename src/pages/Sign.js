@@ -14,8 +14,10 @@ function Sign(){
     const [confEmail, setConfEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confPassword, setConfPassword] = useState("");
-    const [result, setResult] = useState("");
+    const [result , setResult] = useState("");
+    const [check, setCheck] = useState(false);
 
+    var error = "";
 
     const handleChangeFirstName = (e) => {
         setFirstName(e.target.value);
@@ -40,27 +42,63 @@ function Sign(){
         setConfPassword(e.target.value);
     }
 
+    const changeCheck = (e) => {
+        if (check) {
+            setCheck(false);
+        } else {
+            setCheck(true);
+        }
+    }
+
     const handleSumbit = (e) => {
         e.preventDefault();
         const form = $(e.target);
-        $.ajax({
-            type: "POST",
-            url: form.attr("action"),
-            data: form.serialize(),
-            success(data) {
-                console.log("Connexion réussite");
-                console.log(data);
-                setResult(data);
-            },
-        });
+
+        // eslint-disable-next-line
+        if(confEmail != email || email == "" && confEmail == ""){
+            error = "Les adresses mail ne corespondent pas !";
+            setResult(error);
+            console.log(error)
+            return;
+        }else {
+            // eslint-disable-next-line
+            if(confPassword != password || password == "" && confPassword == ""){
+                error = "Les Mot de passes ne corespondent pas !";
+                console.log(error)
+                setResult(error);
+                return;
+            }else {
+                if(!check){
+                    error = "Vous n'avez pas accepter les conditions général d'utilisation";
+                    console.log(error)
+                    setResult(error);
+                    return;
+                }else {
+                    $.ajax({
+                        type: "POST",
+                        url: form.attr("action"),
+                        data: form.serialize(),
+                        success(data) {
+                            console.log("Connexion réussite");
+                            console.log(data);
+                            setResult(data);
+                        },
+                    });
+                }
+            }
+        }
     };
 
+    // eslint-disable-next-line
     const results = () =>{
         // eslint-disable-next-line
-        if(result == 1){
+
+        console.log(result)
+        if(result === 1){
             const location = useLocation();
 
-            $.ajax({
+
+            /*$.ajax({
                 type: "POST",
                 url: "http://localhost:8000//isLog.php",
                 data: "script",
@@ -69,7 +107,7 @@ function Sign(){
                     console.log(result);
                     //updateLog(true);
                 },
-            });
+            });*/
 
             return(<Navigate to="/" state={{from: location}} />);
         }
@@ -79,6 +117,7 @@ function Sign(){
     }
 
     return(
+        <div className="signIn">
         <div className="card">
         <h4 className="title">Sign In!</h4>
             <form
@@ -136,11 +175,13 @@ function Sign(){
             </div>
             <div className="useTerm">
                 <label htmlFor="check"><Link className="linkUse">Condition Général</Link></label>
-                <input autoComplete="off" id="check" name="check" type="checkbox"/>
+                <input autoComplete="off" id="check" name="check" type="checkbox" onClick={(event) => changeCheck(event)}/>
             </div>
             <button className="btn" type="submit">SignIn</button>
         </form>
+            {results()}
         <Link className="link" to="/connexion">Déjà un compte ?</Link>
+    </div>
     </div>);
 }
 

@@ -4,10 +4,10 @@ import React from "react";
 
 function Layout (){
     return (
-        <>
+        <div>
             <Navigation/>
             <Outlet />
-        </>
+        </div>
     );
 };
 
