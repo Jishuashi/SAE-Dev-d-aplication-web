@@ -7,9 +7,11 @@ import {Link} from "react-router-dom";
 import {Navigate, useLocation}  from "react-router";
 import $ from "jquery";
 
+
 function Sign(){
     const [firstname, setFirstName] = useState("");
     const [name, setName] = useState("");
+    const [login, setLogin] = useState("");
     const [email, setEmail] = useState("");
     const [confEmail, setConfEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,8 +24,13 @@ function Sign(){
     const handleChangeFirstName = (e) => {
         setFirstName(e.target.value);
     };
-    const handelChangeName = (e) => {
+
+    const handleChangeName = (e) => {
         setName(e.target.value);
+    };
+
+    const handleChangeLogin = (e) => {
+        setLogin(e.target.value);
     };
 
     const handleChangeEmail = (e) => {
@@ -42,7 +49,7 @@ function Sign(){
         setConfPassword(e.target.value);
     }
 
-    const changeCheck = (e) => {
+    const changeCheck = () => {
         if (check) {
             setCheck(false);
         } else {
@@ -93,7 +100,6 @@ function Sign(){
     const results = () =>{
         // eslint-disable-next-line
 
-        console.log(result)
         if(result === 1){
             const location = useLocation();
 
@@ -121,7 +127,7 @@ function Sign(){
         <div className="card">
         <h4 className="title">Sign In!</h4>
             <form
-                action="http://localhost:8000/index.php"
+                action="http://localhost:8000/signin.php"
                 method="post"
                 onSubmit={(event) => handleSumbit(event)}
             >
@@ -135,15 +141,23 @@ function Sign(){
             </div>
             <div className="field">
                 <img src={human} alt="human" className="input-icon"></img>
-                <input autoComplete="off" id="name" placeholder="Nom" className="input-field" name="name"
+                <input autoComplete="off" id="name" placeholder="Nom" className="input-field" name="lastname"
                        type="text"
                        value={name}
-                       onInput={(event) => handelChangeName(event)}
+                       onInput={(event) => handleChangeName(event)}
                 />
             </div>
             <div className="field">
+                    <img src={human} alt="human" className="input-icon"></img>
+                    <input autoComplete="off" id="login" placeholder="Identifant" className="input-field" name="login"
+                           type="text"
+                           value={login}
+                           onInput={(event) => handleChangeLogin(event)}
+                    />
+                </div>
+            <div className="field">
                 <img src={emailLogo} alt="email" className="input-icon"></img>
-                <input autoComplete="off" id="logemail1" placeholder="Email" className="input-field" name="signmail"
+                <input autoComplete="off" id="logemail1" placeholder="Email" className="input-field" name="email"
                        type="email"
                        value={email}
                        onInput={(event) => handleChangeEmail(event)}
@@ -151,7 +165,7 @@ function Sign(){
             </div>
             <div className="field">
                 <img src={emailLogo} alt="email" className="input-icon"></img>
-                <input autoComplete="off" id="logemail2" placeholder="Confirmation d'email" className="input-field" name="signmail"
+                <input autoComplete="off" id="logemail2" placeholder="Confirmation d'email" className="input-field" name="email"
                        type="email"
                        value={confEmail}
                        onInput={(event) => handleChangeConfEmail(event)}
@@ -159,7 +173,7 @@ function Sign(){
             </div>
             <div className="field">
                 <img src={lock} alt="lock" className="input-icon"></img>
-                <input autoComplete="off" id="logpass" placeholder="Mot de passe" className="input-field" name="signpass"
+                <input autoComplete="off" id="logpass" placeholder="Mot de passe" className="input-field" name="password"
                        type="password"
                        value={password}
                        onInput={(event) => handleChangePass(event)}
@@ -167,7 +181,7 @@ function Sign(){
             </div>
             <div className="field">
                 <img src={lock} alt="lock" className="input-icon"></img>
-                <input autoComplete="off" id="logpassconf" placeholder="Confirmation de mot de passe" className="input-field" name="signpass"
+                <input autoComplete="off" id="logpassconf" placeholder="Confirmation de mot de passe" className="input-field" name="password"
                        type="password"
                        value={confPassword}
                        onInput={(event) => handleChangeConfPass(event)}
