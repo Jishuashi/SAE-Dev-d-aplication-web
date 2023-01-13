@@ -1,0 +1,12 @@
+{
+  "modules": [{
+    "name": "Proba",
+    "credit": "Brandon Bui, Samuel Charton",
+    "description": "Module permettant d'effectuer des calculs de probabilitée"
+  },
+    {
+      "name": "Crypto",
+      "credir": "Yanis Merabet, Samuel Charton",
+      "description": "Module permettant de crypter et décrypter un message"
+    }]
+}
