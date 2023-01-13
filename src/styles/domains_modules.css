@@ -1,0 +1,55 @@
+.domainsDiv h1 {
+    margin: 5%;
+}
+
+.domains {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+    pointer-events: all;
+    transition: all 0.5s ease-in-out
+}
+
+.domain {
+    width: 500px;
+    height: 350px;
+    padding: 2%;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 10px 16px rgba(68, 68, 68, 0.4),
+    inset 0px -10px 16px 1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.domain p {
+    color: black;
+    text-shadow: white;
+
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.domain .name {
+    font-size: 25px;
+    border-radius: 50px;
+}
+
+.domain .name {
+    padding: 10%;
+}
+
+.description {
+    opacity: 0;
+    transition: all 0.1s ease-in-out;
+}
+
+.domain:hover .description {
+    opacity: 100;
+}
