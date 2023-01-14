@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import "../styles/Sign.css";
+import "../styles/Login_signin.css";
 import emailLogo from "../assets/email.svg";
 import lock from "../assets/lock.svg";
 import human from "../assets/human.svg";
 import {Link} from "react-router-dom";
-import {Navigate, useLocation}  from "react-router";
+import {Navigate, useLocation} from "react-router";
 import $ from "jquery";
 
 function Sign(){
@@ -80,7 +80,7 @@ function Sign(){
 
     return(
         <div className="card">
-        <h4 className="title">Sign In!</h4>
+        <h4 className="title">S'inscrire</h4>
             <form
                 action="http://localhost:8000/index.php"
                 method="post"
@@ -112,7 +112,7 @@ function Sign(){
             </div>
             <div className="field">
                 <img src={emailLogo} alt="email" className="input-icon"></img>
-                <input autoComplete="off" id="logemail2" placeholder="Confirmation d'email" className="input-field" name="signmail"
+                <input autoComplete="off" id="logemail2" placeholder="Confirmation de l'email" className="input-field" name="signmail"
                        type="email"
                        value={confEmail}
                        onInput={(event) => handleChangeConfEmail(event)}
@@ -128,19 +128,19 @@ function Sign(){
             </div>
             <div className="field">
                 <img src={lock} alt="lock" className="input-icon"></img>
-                <input autoComplete="off" id="logpassconf" placeholder="Confirmation de mot de passe" className="input-field" name="signpass"
+                <input autoComplete="off" id="logpassconf" placeholder="Confirmation du mot de passe" className="input-field" name="signpass"
                        type="password"
                        value={confPassword}
                        onInput={(event) => handleChangeConfPass(event)}
                 />
             </div>
             <div className="useTerm">
-                <label htmlFor="check"><Link className="linkUse">Condition Général</Link></label>
+                <label htmlFor="check"><Link className="linkUse">Conditions Générales</Link></label>
                 <input autoComplete="off" id="check" name="check" type="checkbox"/>
             </div>
-            <button className="btn" type="submit">SignIn</button>
+            <button className="btn" type="submit">S'enrengistrer</button>
         </form>
-        <Link className="link" to="/connexion">Déjà un compte ?</Link>
+        <Link className="link" to="/connexion">Vous avez déjà un compte ?</Link>
     </div>);
 }
 
