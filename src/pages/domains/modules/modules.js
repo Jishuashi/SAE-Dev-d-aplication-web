@@ -45,7 +45,8 @@ function Modules() {
                             <p className={"nameM"}>{dataMod.modules[i].name}</p>
                         </div>
                         <div className={"descriptionM"}>
-                            <p className={"descriptionM"}>{dataMod.modules[i].description}</p>
+                            <p className={"descriptionMP"}>{dataMod.modules[i].description}</p>
+                            <p className={"credits"}>credits: {dataMod.modules[i].credits}</p>
                         </div>
                     </div>
                     </Link>)
@@ -53,7 +54,7 @@ function Modules() {
             }
             return (
                 <div className="modulesDiv">
-                    <h1 className={"ModuleText"}>Voici la liste des module existants pour le domaine {domainType}:</h1>
+                    <h1 className={"ModuleText"}>Voici la liste des modules existants pour le domaine {domainType}:</h1>
                     <div className="modules">
                         {divModule}
                     </div>
