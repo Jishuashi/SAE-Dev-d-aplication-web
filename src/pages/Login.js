@@ -6,11 +6,15 @@ import {Link} from "react-router-dom";
 import $ from "jquery";
 import {Navigate} from "react-router";
 
-function Login() {
+function Login({isLogged, setLogged}) {
 
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [result , setResult] = useState("");
+
+    const updateLogged = (pValue) => {
+        setLogged(pValue);
+    };
 
     const handleSumbit = (e) => {
         e.preventDefault();
@@ -39,6 +43,7 @@ function Login() {
     const results = () =>{
         // eslint-disable-next-line
         if(result == 1){
+            updateLogged(true);
             return <Navigate to="/"/>;
         }
         else {

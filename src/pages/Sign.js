@@ -100,7 +100,7 @@ function Sign(){
     const Results = () =>{
         // eslint-disable-next-line
         if(result == 1){
-            return <Navigate to="/" />;
+            return <Navigate to="/connexion" />;
         }
         else {
             return (<p>{result}</p>);
