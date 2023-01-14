@@ -29,13 +29,13 @@
 }
 
 .domain p {
-    font-weight: bold;
     color: black;
     text-shadow: white;
 
 }
 
 .domain .nameD {
+    font-weight: bold;
     font-size: 25px;
     border-radius: 50px;
 }
@@ -45,6 +45,8 @@
 }
 
 .descriptionD {
+    padding-left: 10px;
+    padding-right: 10px;
     opacity: 0;
     transition: all 0.1s ease-in-out;
 }

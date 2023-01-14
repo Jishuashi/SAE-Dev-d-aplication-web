@@ -29,7 +29,6 @@
 }
 
 .module p {
-    font-weight: bold;
     color: black;
     text-shadow: white;
 
@@ -40,6 +39,7 @@ a {
 }
 
 .module .nameM {
+    font-weight: bold;
     font-size: 25px;
     border-radius: 50px;
 }
@@ -49,8 +49,14 @@ a {
 }
 
 .descriptionM {
+    padding-left: 10px;
+    padding-right: 10px;
     opacity: 0;
     transition: all 0.1s ease-in-out;
+}
+
+.credits {
+    font-weight: normal;
 }
 
 .module:hover .descriptionM {
