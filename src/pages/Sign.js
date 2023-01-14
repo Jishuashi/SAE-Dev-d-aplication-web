@@ -4,7 +4,7 @@ import emailLogo from "../assets/email.svg";
 import lock from "../assets/lock.svg";
 import human from "../assets/human.svg";
 import {Link} from "react-router-dom";
-import {Navigate, useLocation}  from "react-router";
+import {Navigate}  from "react-router";
 import $ from "jquery";
 
 
@@ -62,7 +62,7 @@ function Sign(){
         const form = $(e.target);
 
         // eslint-disable-next-line
-        if(confEmail != email || email == "" && confEmail == ""){
+        if(confEmail != email || email === "" && confEmail === ""){
             error = "Les adresses mail ne corespondent pas !";
             setResult(error);
             console.log(error)
@@ -97,25 +97,10 @@ function Sign(){
     };
 
     // eslint-disable-next-line
-    const results = () =>{
+    const Results = () =>{
         // eslint-disable-next-line
-
-        if(result === 1){
-            const location = useLocation();
-
-
-            /*$.ajax({
-                type: "POST",
-                url: "http://localhost:8000//isLog.php",
-                data: "script",
-                success(data) {
-                    console.log("Connexion réussite")
-                    console.log(result);
-                    //updateLog(true);
-                },
-            });*/
-
-            return(<Navigate to="/" state={{from: location}} />);
+        if(result == 1){
+            return <Navigate to="/" />;
         }
         else {
             return (<p>{result}</p>);
@@ -193,7 +178,7 @@ function Sign(){
             </div>
             <button className="btn" type="submit">SignIn</button>
         </form>
-            {results()}
+            {Results()}
         <Link className="link" to="/connexion">Déjà un compte ?</Link>
     </div>
     </div>);

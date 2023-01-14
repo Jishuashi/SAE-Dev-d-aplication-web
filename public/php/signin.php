@@ -15,7 +15,7 @@
     $bd="sae";
 
 
-    $connexion=mysqli_connect($serveur,$loginDB,$passwdDB)
+    $connexion= mysqli_connect($serveur,$loginDB,$passwdDB)
         or die("Connexion impossible au serveur $serveur pour $loginDB");
 
     mysqli_select_db($connexion,$bd)
@@ -39,4 +39,4 @@
     mysqli_stmt_execute($reqpreparePass) or die('Error: PASSWD');
     mysqli_stmt_execute($reqpreparePerm) or die('Error : PERM');
 
-    echo('Inscription Réusite');
+    echo(1);

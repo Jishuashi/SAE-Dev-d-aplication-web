@@ -4,7 +4,7 @@ import human from '../assets/human.svg';
 import lock from '../assets/lock.svg';
 import {Link} from "react-router-dom";
 import $ from "jquery";
-import {Navigate, useLocation} from "react-router";
+import {Navigate} from "react-router";
 
 function Login() {
 
@@ -38,23 +38,8 @@ function Login() {
 
     const results = () =>{
         // eslint-disable-next-line
-
         if(result == 1){
-            const location = useLocation();
-
-
-            /*$.ajax({
-                type: "POST",
-                url: "http://localhost:8000//isLog.php",
-                data: "script",
-                success(data) {
-                    console.log("Connexion réussite")
-                    console.log(result);
-                    //updateLog(true);
-                },
-            });*/
-
-            return(<Navigate to="/" state={{from: location}} />);
+            return <Navigate to="/"/>;
         }
         else {
             return (<p>{result}</p>);

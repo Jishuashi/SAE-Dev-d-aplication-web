@@ -25,10 +25,8 @@ $passBool = false;
 $passLog = false;
 
 while ($line=mysqli_fetch_row($result)) {
-    echo $login == $line[0];
     if($login == $line[0]){
         $passLog = true;
-
         if($passwd == $line[1]){
             $passBool = true;
         }
@@ -40,6 +38,8 @@ if($passBool && $passLog){
 }else{
     echo ("Login ou Mot de passe incorect !");
 }
+
+?>
 
 
 
