@@ -13,6 +13,7 @@ function App() {
                 <Routes history={Router.history}>
                     <Route path="/" element={<Layout />}>
                         <Route index element={<Home />} />
+                        <Route path="home" element={<Home />} />
                         <Route path="connexion" element={<Login />} />
                         <Route path="inscription" element={<Sign />} />
                     </Route>
