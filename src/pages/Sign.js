@@ -135,7 +135,7 @@ function Sign(){
                 />
             </div>
             <div className="useTerm">
-                <label htmlFor="check"><Link className="linkUse">Conditions Générales</Link></label>
+                <label htmlFor="check"><Link className="linkUse">j'ai lu et j'  accepte les conditions générales d'utilisation</Link></label>
                 <input autoComplete="off" id="check" name="check" type="checkbox"/>
             </div>
             <button className="btn" type="submit">S'enrengistrer</button>
