@@ -1,0 +1,63 @@
+.modulesDiv h1 {
+    margin: 5%;
+}
+
+.modules {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+    transition: all 0.5s ease-in-out;
+}
+
+.module {
+    width: 500px;
+    height: 350px;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 10px 16px rgba(68, 68, 68, 0.4),
+    inset 0px -10px 16px 1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.module:hover {
+    transform: scaleY(1.05) scaleX(1.05);
+}
+
+.module p {
+    font-weight: bold;
+    color: black;
+    text-shadow: white;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+.module .nameM {
+    font-size: 25px;
+    border-radius: 50px;
+}
+
+.module .nameM {
+    padding: 10%;
+}
+
+.descriptionM {
+    opacity: 0;
+    transition: all 0.1s ease-in-out;
+}
+
+.module:hover .descriptionM {
+    opacity: 100;
+}
+
+.loading {
+    font-size: 50px;
+    text-align: center;
+}

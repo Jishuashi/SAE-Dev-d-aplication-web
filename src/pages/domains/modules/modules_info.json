@@ -1,12 +1,17 @@
 {
   "modules": [{
-    "name": "Proba",
-    "credit": "Brandon Bui, Samuel Charton",
-    "description": "Module permettant d'effectuer des calculs de probabilitée"
-  },
+      "name": "Probabilités",
+      "module_name": "module_proba",
+      "domain_name": "Maths",
+      "credits": "Brandon Bui, Samuel Charton",
+      "description": "Module permettant d'effectuer des calculs de probabilitée"
+    },
     {
-      "name": "Crypto",
-      "credir": "Yanis Merabet, Samuel Charton",
+      "name": "Cryptographie",
+      "module_name": "module_crypto",
+      "domain_name": "Securité",
+      "credits": "Yanis Merabet, Samuel Charton",
       "description": "Module permettant de crypter et décrypter un message"
-    }]
+    }
+  ]
 }

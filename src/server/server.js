@@ -15,6 +15,15 @@ app.get('/domains', async (req, res) => {
     }
 });
 
+app.get('/domains/modules', async (req, res) => {
+    try {
+        let jsonData = await parseJSON('./src/pages/domains/modules/modules_info.json');
+        res.send(jsonData);
+    } catch (err) {
+        console.error(err);
+    }
+});
+
 async function parseJSON(path){
     let data = await fs.promises.readFile(path, 'utf8');
     return JSON.parse(data);
