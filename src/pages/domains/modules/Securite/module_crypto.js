@@ -1,5 +1,5 @@
 import React from 'react';
-import  '../../../../styles/module.css';
+import  '../../../../styles/moduleCrypto.css';
 
 function ModuleCrypto (){
     return(<div className="ModuleCrypto">
