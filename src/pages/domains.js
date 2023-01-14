@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import  '../styles/domains_modules.css';
+import  '../styles/domains.css';
 import axios from "axios";
-import { Link } from "react-router-dom";
-import module from "../assets/module.png"
+import { createSearchParams, useNavigate } from "react-router-dom";
+import domain from "../assets/domain.png"
 
 function Domains() {
     const [data, setData] = useState([]);
@@ -19,20 +19,30 @@ function Domains() {
             });
     }, []);
 
+    const navigate = useNavigate();
+
     if(data.domains !== undefined){
         let divDomains = [];
         for (let i = 0; i < data.domains.length; i++) {
+
+            const goToModulesDomain = (domain) => {
+                navigate({
+                    pathname: "/domains/modules",
+                    search: createSearchParams({
+                        domain: data.domains[i].name
+                    }).toString()
+                })
+            }
+
             divDomains.push(
-                <Link to={{ pathname: "/domains/modules"}} key={i}>
-                    <div className={"domain"} >
-                        <div className={"name"} style={{ backgroundImage: `url(${module})`}}>
-                            <p className={"name"}>{data.domains[i].name}</p>
+                    <div className={"domain"} onClick={goToModulesDomain} key={i}>
+                        <div className={"nameD"} style={{ backgroundImage: `url(${domain})`}}>
+                            <p className={"nameD"}>{data.domains[i].name}</p>
                         </div>
-                        <div className={"description"}>
-                            <p className={"description"}>{data.domains[i].description}</p>
+                        <div className={"descriptionD"}>
+                            <p className={"descriptionD"}>{data.domains[i].description}</p>
                         </div>
-                    </div>
-                </Link>);
+                    </div>)
         }
         return (
             <div className="domainsDiv">

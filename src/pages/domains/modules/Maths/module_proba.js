@@ -1,5 +1,5 @@
 import React from 'react';
-import  '../../../../styles/domains_modules.css';
+import  '../../../../styles/module.css';
 
 function ModuleProba (){
     return(<div className="ModuleProba">
