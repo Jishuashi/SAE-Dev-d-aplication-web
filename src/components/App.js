@@ -22,8 +22,8 @@ function App() {
 
                         <Route path="domains" element={<Domains />} />
                         <Route path="domains/modules/" element={<Modules />} />
-                        <Route path="domains/modules/proba" element={<ModuleProba />} />
-                        <Route path="domains/modules/crypto" element={<ModuleCrypto />} />
+                        <Route path="domains/modules/module_proba" element={<ModuleProba />} />
+                        <Route path="domains/modules/module_crypto" element={<ModuleCrypto />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
