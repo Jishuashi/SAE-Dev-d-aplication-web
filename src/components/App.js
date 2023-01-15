@@ -2,43 +2,34 @@ import '../styles/App.css';
 import Layout from "./Layout";
 import Home from "../pages/Home";
 import {BrowserRouter, Routes, Route, Router} from "react-router-dom";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Login from "../pages/Login";
 import Sign from "../pages/Sign";
-import $ from "jquery";
+import {useCookies} from "react-cookie";
+
 
 function App() {
-    const [logged, setLogged] = useState("");
+    const [logged, setLogged] = useState(false);
+    const [cookies, setCookie] = useCookies(['log']);
 
-    const setCookie = (value) => {
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:8000/cookie.php",
-            data: {cookie: value},
-            success(data) {
-                console.log("Cookie set");
-                console.log(data);
-            }
-        });
+    const setLogCookie = (value) => {
+        setCookie('log', value, { path: '/' });
     }
 
-    const getCookies = () => {
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:8000/cookie.php",
-            success(data) {
-                console.log("Cookie get");
-                console.log(data);
-                setLogged(data);
-            }
-        });
+    const getLogCookies = () => {
+        console.log(cookies.log)
+        if(cookies.log){
+            setLogged(cookies.log);
+        }
     }
 
-    if (logged){
-        setCookie(true);
+    if (logged && cookies.log !== 'true'){
+        setLogCookie(true);
     }
 
-    getCookies();
+    useEffect(() => {
+        getLogCookies();
+    })
 
     return (
         <div className="App">
