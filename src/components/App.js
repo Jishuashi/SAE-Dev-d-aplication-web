@@ -11,10 +11,13 @@ import Modules from "../pages/domains/modules/modules";
 import ModuleCrypto from "../pages/domains/modules/Securite/module_crypto";
 import ModuleProba from "../pages/domains/modules/Maths/module_proba";
 import NotAllowed from "../pages/NotAllowed";
+import Profile from "../pages/Profile";
+import ChangePass from "../pages/ChangePass";
 
 
 function App() {
     const [logged, setLogged] = useState(false);
+    const [unconnected, setUnconnected] = useState(false);
     const [user, setUser] = useState("");
     // eslint-disable-next-line no-unused-vars
     const [rank, setRank] = useState("");
@@ -44,15 +47,21 @@ function App() {
         setLogCookie(true, user, rank);
     }
 
+    if(unconnected){
+        removeLogCookies();
+        setUnconnected(false);
+    }
+
     useEffect(() => {
         getLogCookies();
     })
+
 
     return (
         <div className="App">
             <BrowserRouter>
                 <Routes history={Router.history}>
-                    <Route path="/" element={<Layout logged={logged}/>}>
+                    <Route path="/" element={<Layout logged={logged} setLogged={setLogged} unconnected={unconnected} setUnconnected={setUnconnected}/>}>
                         <Route index element={<Home logged={logged} user={user}/>} />
                         <Route path="connexion" element={<Login logged={logged} setLogged={setLogged} user= {user} setUser={setUser} rank={rank} setRank={setRank}/>} />
                         <Route path="inscription" element={<Sign />} />
@@ -61,6 +70,8 @@ function App() {
                         <Route path="domains/modules/module_proba" element={<ModuleProba logged={logged} />} />
                         <Route path="domains/modules/module_crypto" element={<ModuleCrypto  logged={logged} />} />
                         <Route path="notAllowed" element={<NotAllowed />} />
+                        <Route path="profile" element={<Profile rank={rank} user={user} logged={logged}/> }/>
+                        <Route path="changepass" element={<ChangePass /> }/>
                     </Route>
                 </Routes>
             </BrowserRouter>

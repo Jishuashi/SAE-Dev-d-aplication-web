@@ -7,19 +7,44 @@ import React from "react";
  * Retourne un Élément React contenant la div de navigation du site
  * @returns {JSX.Element} retourne <Navigation />
  */
-function Navigation({logged}) {
+function Navigation({logged, setLogged, unconnected, setUnconnected}) {
 
-    if(logged){
-        return(<div className="divNav">
+    const handleChangeLogged = () => {
+        setLogged(!logged);
+        setUnconnected(true);
+    }
+
+    if (logged) {
+        return (<div className="divNav">
             <nav className="navbar">
                 <Link to="/"><img src={logo} className="logo" alt="logo"/></Link>
                 <div className="rightNav">
                     <Link className="link" to="/domains">Domaine</Link>
+                    <div className="menu">
+                        <nav role="navigation">
+                            <div id="menuToggle">
+                                <input type="checkbox"/>
+
+                                <span></span>
+                                <span></span>
+                                <span></span>
+
+                                <ul id="menu">
+                                    <Link to="/profile">
+                                        <li>Mon Profil</li>
+                                    </Link>
+                                    <Link to="/" onClick={handleChangeLogged}>
+                                        <li>Deconexion</li>
+                                    </Link>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
                 </div>
             </nav>
         </div>);
-    }else{
-        return(<div className="divNav">
+    } else {
+        return (<div className="divNav">
             <nav className="navbar">
                 <Link to="/"><img src={logo} className="logo" alt="logo"/></Link>
                 <div className="rightNav">
