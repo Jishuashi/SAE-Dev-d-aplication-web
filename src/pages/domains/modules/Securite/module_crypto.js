@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import  '../../../../styles/moduleCrypto.css';
+import '../../../../styles/moduleCrypto.css';
+import {useNavigate} from "react-router-dom";
 
-function ModuleCrypto (){
+function ModuleCrypto({logged}) {
     let [result, setResult] = useState(``);
     let [error, setError] = useState("");
 
@@ -45,8 +46,8 @@ function ModuleCrypto (){
         }
 
         str = ""
-        for (let i = 0 ; i < ciphertext.length ; i++){
-            if (ciphertext[i] <= 16){
+        for (let i = 0; i < ciphertext.length; i++) {
+            if (ciphertext[i] <= 16) {
                 str += "0" // la conversion en hexadécimal ne renvoie pas un 0, nécessaire au bon chiffrement
             }
             str += ciphertext[i].toString(16) // conversion décimal/hexadécimal
@@ -57,8 +58,8 @@ function ModuleCrypto (){
     }
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
+        const {name, value} = event.target;
+        setFormData({...formData, [name]: value});
     }
 
     const handleSubmit = (event) => {
@@ -66,22 +67,27 @@ function ModuleCrypto (){
         setResult(``)
         setError("")
         if (formData.key !== "") {
-            if (formData.textCrypto !== ""){
-                setResult(rc4(formData.key,formData.textCrypto))
+            if (formData.textCrypto !== "") {
+                setResult(rc4(formData.key, formData.textCrypto))
             } else {
                 setError("Erreur le champ Texte n'a pas de valeur")
             }
-        } else  {
+        } else {
             setError("Erreur le champ Clé n'a pas de valeur")
         }
     }
 
-    return(
-        <div className="ModuleCrypto">
+    const navigate = useNavigate();
+
+
+    if (logged) {
+        return (
+            <div className="ModuleCrypto">
                 <h1 className={"titleCrypto"}>Module de cryptographie</h1>
                 <form onSubmit={handleSubmit}>
                     <div className={"inputsCrypto"}>
-                        <p className={"inputTextCrypto"}>Entrez les valeurs requise pour chiffrer le texte en hexadécimal: </p>
+                        <p className={"inputTextCrypto"}>Entrez les valeurs requise pour chiffrer le texte en
+                            hexadécimal: </p>
                         <label htmlFor={"key"}>Clé: </label>
                         <input type={"text"} className={"key"} name={"key"} onChange={handleChange}/>
                         <label htmlFor={"textCrypto"}>Texte: </label>
@@ -90,13 +96,17 @@ function ModuleCrypto (){
                     <input type="submit" className={"lunchButtonCrypto"} value="Lancer le chiffrement"/>
                 </form>
 
-            <div className={"dialogBoxCrypto"}>
-                <p className={"errorCrypto"}>{error}</p>
-                <label htmlFor={"result"}>Résultat: </label>
-                <input type={"text"} name={"result"} onInput={false} className={"calcResultCrypto"} value={result}></input>
-            </div>
+                <div className={"dialogBoxCrypto"}>
+                    <p className={"errorCrypto"}>{error}</p>
+                    <label htmlFor={"result"}>Résultat: </label>
+                    <input type={"text"} name={"result"} onInput={false} className={"calcResultCrypto"}
+                           value={result}></input>
+                </div>
 
-        </div>);
+            </div>);
+    } else {
+        return navigate("/notAllowed");
+    }
 }
 
 export default ModuleCrypto;

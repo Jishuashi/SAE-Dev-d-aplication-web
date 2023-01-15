@@ -29,6 +29,10 @@ while ($line=mysqli_fetch_row($result)) {
         $passLog = true;
         if($passwd == $line[1]){
             $passBool = true;
+
+            if($line[2] == "admin" or $line[2] == "user"){
+                echo $line[2];
+            }
         }
     }
 }

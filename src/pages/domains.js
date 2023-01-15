@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import  '../styles/domains.css';
+import React, {useState, useEffect} from "react";
+import '../styles/domains.css';
 import axios from "axios";
-import { createSearchParams, useNavigate } from "react-router-dom";
+import {createSearchParams, useNavigate} from "react-router-dom";
 import domain from "../assets/domain.png"
 
-function Domains() {
+function Domains({logged}) {
     const [data, setData] = useState([]);
 
     //useffect is used to the json parsed data from the middleware Node.js server
@@ -19,41 +19,48 @@ function Domains() {
             });
     }, []);
 
+    const notAllowed = () => {
+        return navigate("/notAllowed");
+    }
+
     const navigate = useNavigate();
 
-    if(data.domains !== undefined){
-        let divDomains = [];
-        for (let i = 0; i < data.domains.length; i++) {
+    if (logged) {
+        if (data.domains !== undefined) {
+            let divDomains = [];
+            for (let i = 0; i < data.domains.length; i++) {
 
-            const goToModulesDomain = (domain) => {
-                navigate({
-                    pathname: "/domains/modules",
-                    search: createSearchParams({
-                        domain: data.domains[i].name
-                    }).toString()
-                })
-            }
+                const goToModulesDomain = (domain) => {
+                    navigate({
+                        pathname: "/domains/modules",
+                        search: createSearchParams({
+                            domain: data.domains[i].name
+                        }).toString()
+                    })
+                }
 
-            divDomains.push(
+                divDomains.push(
                     <div className={"domain"} onClick={goToModulesDomain} key={i}>
-                        <div className={"nameD"} style={{ backgroundImage: `url(${domain})`}}>
+                        <div className={"nameD"} style={{backgroundImage: `url(${domain})`}}>
                             <p className={"nameD"}>{data.domains[i].name}</p>
                         </div>
                         <div className={"descriptionD"}>
                             <p className={"descriptionD"}>{data.domains[i].description}</p>
                         </div>
                     </div>)
-        }
-        return (
-            <div className="domainsDiv">
-                <h1 className={"domainText"}>Voici la liste des domaines existants:</h1>
-                <div className="domains">
-                    {divDomains}
+            }
+            return (
+                <div className="domainsDiv">
+                    <h1 className={"domainText"}>Voici la liste des domaines existants:</h1>
+                    <div className="domains">
+                        {divDomains}
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        } else return <p className={"loading"}>Loading...</p>
+    } else {
+        return <>{notAllowed()}</>;
     }
-    else return <p className={"loading"}>Loading...</p>
 }
 
 export default Domains;

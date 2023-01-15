@@ -3,8 +3,7 @@ import "../styles/Login_signin.css";
 import emailLogo from "../assets/email.svg";
 import lock from "../assets/lock.svg";
 import human from "../assets/human.svg";
-import {Link} from "react-router-dom";
-import {Navigate}  from "react-router";
+import {Link, useNavigate} from "react-router-dom";
 import $ from "jquery";
 
 
@@ -98,9 +97,11 @@ function Sign(){
 
     // eslint-disable-next-line
     const Results = () =>{
+        const navigate = useNavigate();
+
         // eslint-disable-next-line
         if(result == 1){
-            return <Navigate to="/connexion" />;
+            navigate("/");
         }
         else {
             return (<p>{result}</p>);

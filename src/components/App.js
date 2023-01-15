@@ -10,25 +10,38 @@ import Domains from "../pages/domains";
 import Modules from "../pages/domains/modules/modules";
 import ModuleCrypto from "../pages/domains/modules/Securite/module_crypto";
 import ModuleProba from "../pages/domains/modules/Maths/module_proba";
+import NotAllowed from "../pages/NotAllowed";
 
 
 function App() {
     const [logged, setLogged] = useState(false);
-    const [cookies, setCookie] = useCookies(['log']);
+    const [user, setUser] = useState("");
+    // eslint-disable-next-line no-unused-vars
+    const [rank, setRank] = useState("");
+    const [cookies, setCookie, removeCookie] = useCookies(['log']);
 
-    const setLogCookie = (value) => {
+    const setLogCookie = (value, pUser, pRank) => {
         setCookie('log', value, { path: '/' });
+        setCookie('logUser', pUser, { path: '/' });
+        setCookie('logRank', pRank, { path: '/' });
     }
 
     const getLogCookies = () => {
-        console.log(cookies.log)
         if(cookies.log){
             setLogged(cookies.log);
+            setRank(cookies.logRank);
+            setUser(cookies.logUser);
         }
     }
 
+    const removeLogCookies = () => {
+        removeCookie('log', );
+        removeCookie('logUser' );
+        removeCookie('logRank');
+    }
+
     if (logged && cookies.log !== 'true'){
-        setLogCookie(true);
+        setLogCookie(true, user, rank);
     }
 
     useEffect(() => {
@@ -40,14 +53,14 @@ function App() {
             <BrowserRouter>
                 <Routes history={Router.history}>
                     <Route path="/" element={<Layout logged={logged}/>}>
-                        <Route index element={<Home logged={logged}/>} />
-                        <Route path="home" element={<Home logged={logged}/>} />
-                        <Route path="connexion" element={<Login logged={logged} setLogged={setLogged}/>} />
+                        <Route index element={<Home logged={logged} user={user}/>} />
+                        <Route path="connexion" element={<Login logged={logged} setLogged={setLogged} user= {user} setUser={setUser} rank={rank} setRank={setRank}/>} />
                         <Route path="inscription" element={<Sign />} />
-                        <Route path="domains" element={<Domains />} />
-                        <Route path="domains/modules/" element={<Modules />} />
-                        <Route path="domains/modules/module_proba" element={<ModuleProba />} />
-                        <Route path="domains/modules/module_crypto" element={<ModuleCrypto />} />
+                        <Route path="domains" element={<Domains logged={logged}/>} />
+                        <Route path="domains/modules/" element={<Modules logged={logged} />} />
+                        <Route path="domains/modules/module_proba" element={<ModuleProba logged={logged} />} />
+                        <Route path="domains/modules/module_crypto" element={<ModuleCrypto  logged={logged} />} />
+                        <Route path="notAllowed" element={<NotAllowed />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

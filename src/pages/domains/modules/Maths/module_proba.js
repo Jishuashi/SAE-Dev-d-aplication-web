@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import  '../../../../styles/moduleProba.css';
-
-function ModuleProba (){
+import React, {useState} from 'react';
+import '../../../../styles/moduleProba.css';
+import {useNavigate} from "react-router-dom";
+function ModuleProba({logged}) {
     const [error, setError] = useState("")
     const [result, setResult] = useState(``)
 
@@ -15,15 +15,15 @@ function ModuleProba (){
         method: 'rectangles' //default value
     });
 
-    function loiNormal(x){
-        return (1/(formData.sigma*Math.sqrt(2*Math.PI)))*Math.exp(-0.5*Math.pow((x-formData.moy)/formData.sigma,2))
+    function loiNormal(x) {
+        return (1 / (formData.sigma * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((x - formData.moy) / formData.sigma, 2))
     }
 
-    function convertiProba(number){
-        if (formData.t>formData.moy){
-            return Math.round((number+0.5)*round)/round
+    function convertiProba(number) {
+        if (formData.t > formData.moy) {
+            return Math.round((number + 0.5) * round) / round
         }
-        return Math.round((0.5-number)*round)/round
+        return Math.round((0.5 - number) * round) / round
     }
 
 
@@ -31,7 +31,7 @@ function ModuleProba (){
         event.preventDefault();
         setResult(``)
 
-        if (formData.sigma<=0){
+        if (formData.sigma <= 0) {
             setError("Erreur sigma dois être strictement supérieur à 0")
         } else {
             setError("")
@@ -105,12 +105,12 @@ function ModuleProba (){
                 //converti la somme des aires des trapèzes pour donner la probabilité p(x<t)
                 let resT = convertiProba(sommeTrap)
                 setResult(`Médiane trapèzes: ${resT}`)
-                
+
             } else if (formData.method === "simpson") {
                 let fa = loiNormal(a) //--> f(a)
                 let fb = loiNormal(b) //--> f(b)
-                let fab = 4*loiNormal((a+b)/2)  //-->4f((a+b)/2)
-                let result = (fb+fab+fa)*(b-a)/6 //-->(b-a)/6 * [f(a)+4f((a+b)/2)+f(b)]
+                let fab = 4 * loiNormal((a + b) / 2)  //-->4f((a+b)/2)
+                let result = (fb + fab + fa) * (b - a) / 6 //-->(b-a)/6 * [f(a)+4f((a+b)/2)+f(b)]
                 result = convertiProba(result)
                 setResult(`Médiane simpson: ${result}`)
             }
@@ -118,41 +118,54 @@ function ModuleProba (){
     }
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
+        const {name, value} = event.target;
+        setFormData({...formData, [name]: value});
     }
 
-    return(
-        <div className="ModuleProba">
-            <h1 className={"titleProba"}>Module de probabilité</h1>
-            <form onSubmit={handleSubmit}>
-                <div className={"inputsProba"}>
-                    <p className={"inputTextProba"}>Entrez les valeurs: </p>
-                    <label htmlFor={"sigma"}>Sigma: </label>
-                    <input type={"number"} className={"sigma"} name={"sigma"} min={"1"} step={"any"} required={true} placeholder={"sigma>0"} onChange={handleChange}/>
-                    <label htmlFor={"moy"}>Esperence: </label>
-                    <input type={"number"} className={"moy"} name={"moy"} step={"any"} required={true} onChange={handleChange}/>
-                    <label htmlFor={"t"}>T: </label>
-                    <input type={"number"} className={"t"} name={"t"} step={"any"} required={true} onChange={handleChange}/>
-                </div>
+    const navigate = useNavigate();
 
-                <div className={"radioInputsProba"}>
-                    <p className={"calcMethod"}>Méthode de calcul:</p>
-                    <label htmlFor="rectangles">rectangles</label>
-                    <input type={"radio"} className={"rectangles"} name={"method"} value="rectangles" defaultChecked onChange={handleChange}/>
-                    <label htmlFor="trapezes">trapèzes</label>
-                    <input type={"radio"} className={"trapezes"} name={"method"} value="trapezes" onChange={handleChange}/>
-                    <label htmlFor="simpson">simpson</label>
-                    <input type={"radio"} className={"simpson"} name={"method"} value="simpson" onChange={handleChange}/>
-                </div>
-                <input type="submit" className={"lunchButtonProba"} value="Lancer le calcul"/>
-            </form>
+    if (logged) {
+        return (
+            <div className="ModuleProba">
+                <h1 className={"titleProba"}>Module de probabilité</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className={"inputsProba"}>
+                        <p className={"inputTextProba"}>Entrez les valeurs: </p>
+                        <label htmlFor={"sigma"}>Sigma: </label>
+                        <input type={"number"} className={"sigma"} name={"sigma"} min={"1"} step={"any"} required={true}
+                               placeholder={"sigma>0"} onChange={handleChange}/>
+                        <label htmlFor={"moy"}>Esperence: </label>
+                        <input type={"number"} className={"moy"} name={"moy"} step={"any"} required={true}
+                               onChange={handleChange}/>
+                        <label htmlFor={"t"}>T: </label>
+                        <input type={"number"} className={"t"} name={"t"} step={"any"} required={true}
+                               onChange={handleChange}/>
+                    </div>
 
-            <div className={"dialogBoxProba"}>
-                <p className={"errorProba"}>{error}</p>
-                <p className={"calcResultProba"}>{result}</p>
-            </div>
-        </div>);
+                    <div className={"radioInputsProba"}>
+                        <p className={"calcMethod"}>Méthode de calcul:</p>
+                        <label htmlFor="rectangles">rectangles</label>
+                        <input type={"radio"} className={"rectangles"} name={"method"} value="rectangles" defaultChecked
+                               onChange={handleChange}/>
+                        <label htmlFor="trapezes">trapèzes</label>
+                        <input type={"radio"} className={"trapezes"} name={"method"} value="trapezes"
+                               onChange={handleChange}/>
+                        <label htmlFor="simpson">simpson</label>
+                        <input type={"radio"} className={"simpson"} name={"method"} value="simpson"
+                               onChange={handleChange}/>
+                    </div>
+                    <input type="submit" className={"lunchButtonProba"} value="Lancer le calcul"/>
+                </form>
+
+                <div className={"dialogBoxProba"}>
+                    <p className={"errorProba"}>{error}</p>
+                    <p className={"calcResultProba"}>{result}</p>
+                </div>
+            </div>);
+    }
+    else {
+        return (navigate("/notAllowed"));
+    }
 }
 
 export default ModuleProba;

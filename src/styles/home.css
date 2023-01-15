@@ -45,6 +45,15 @@
     inset 0px -10px 16px 1px rgb(122, 144, 255);
 }
 
+.hello{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 896px;
+    text-align: center;
+    font-size: 50px;
+}
+
 @media screen and (max-width: 1024px) {
     .ytplayer {
         width: 100%;
