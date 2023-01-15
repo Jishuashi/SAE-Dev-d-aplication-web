@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import '../styles/Login.css';
+import '../styles/Login_signin.css';
 import human from '../assets/human.svg';
 import lock from '../assets/lock.svg';
 import {Link} from "react-router-dom";
@@ -44,7 +44,7 @@ function Login({isLogged, setLogged}) {
         // eslint-disable-next-line
         if(result == 1){
             updateLogged(true);
-            return <Navigate to="/"/>;
+            return <Navigate to="/home"/>;
         }
         else {
             return (<p>{result}</p>);

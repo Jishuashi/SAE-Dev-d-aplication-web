@@ -1,0 +1,11 @@
+{
+  "domains": [{
+      "name": "Maths",
+      "description": "Le domaine maths est le domaine regroupant tout les modules lié aux maths, exemple: probabilitées"
+    },
+    {
+      "name": "Securité",
+      "description": "Le domaine sécurité est le domaine regroupant les modules de securité, exemple: cryptographie"
+    }
+  ]
+}

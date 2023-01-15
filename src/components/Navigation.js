@@ -12,17 +12,16 @@ function Navigation({logged}) {
     if(logged){
         return(<div className="divNav">
             <nav className="navbar">
-                <Link to="/home"><img src={logo} id="logo" alt="logo"/></Link>
+                <Link to="/"><img src={logo} className="logo" alt="logo"/></Link>
                 <div className="rightNav">
-                    <Link className="link" to="/domaine">Domaine</Link>
-                    <Link className="link" to="/module">Module</Link>
+                    <Link className="link" to="/domains">Domaine</Link>
                 </div>
             </nav>
         </div>);
     }else{
         return(<div className="divNav">
             <nav className="navbar">
-                <Link to="/home"><img src={logo} id="logo" alt="logo"/></Link>
+                <Link to="/"><img src={logo} className="logo" alt="logo"/></Link>
                 <div className="rightNav">
                     <Link className="link" to="/connexion">S'identifier</Link>
                     <Link className="link" to="/inscription">S'inscrire</Link>

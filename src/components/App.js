@@ -6,6 +6,10 @@ import React, {useState, useEffect} from "react";
 import Login from "../pages/Login";
 import Sign from "../pages/Sign";
 import {useCookies} from "react-cookie";
+import Domains from "../pages/domains";
+import Modules from "../pages/domains/modules/modules";
+import ModuleCrypto from "../pages/domains/modules/Securite/module_crypto";
+import ModuleProba from "../pages/domains/modules/Maths/module_proba";
 
 
 function App() {
@@ -40,6 +44,10 @@ function App() {
                         <Route path="home" element={<Home logged={logged}/>} />
                         <Route path="connexion" element={<Login logged={logged} setLogged={setLogged}/>} />
                         <Route path="inscription" element={<Sign />} />
+                        <Route path="domains" element={<Domains />} />
+                        <Route path="domains/modules/" element={<Modules />} />
+                        <Route path="domains/modules/module_proba" element={<ModuleProba />} />
+                        <Route path="domains/modules/module_crypto" element={<ModuleCrypto />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
