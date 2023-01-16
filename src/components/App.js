@@ -1,7 +1,7 @@
 import '../styles/App.css';
 import Layout from "./Layout";
 import Home from "../pages/Home";
-import {BrowserRouter, Routes, Route, Router} from "react-router-dom";
+import {Routes, Route, Router, HashRouter} from "react-router-dom";
 import React, {useState, useEffect} from "react";
 import Login from "../pages/Login";
 import Sign from "../pages/Sign";
@@ -59,7 +59,7 @@ function App() {
 
     return (
         <div className="App">
-            <BrowserRouter>
+            <HashRouter>
                 <Routes history={Router.history}>
                     <Route path="/" element={<Layout logged={logged} setLogged={setLogged} unconnected={unconnected} setUnconnected={setUnconnected}/>}>
                         <Route index element={<Home logged={logged} user={user}/>} />
@@ -74,7 +74,7 @@ function App() {
                         <Route path="changepass" element={<ChangePass /> }/>
                     </Route>
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
         </div>
     );
 }

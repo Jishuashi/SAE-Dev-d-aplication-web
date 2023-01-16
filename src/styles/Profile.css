@@ -5,8 +5,8 @@
     transform: translateX(50%);
 }
 
-.userProfileNormal .userTitle {
-
+.userProfileNormal .UserTitle {
+    font-weight: bold;
 }
 
 .userProfileNormal .titleProfile {
@@ -19,9 +19,73 @@
     flex-direction: column;
     color: white;
     justify-content: space-evenly;
-    width: 300px;
+    width: 400px;
     height: 300px;
     padding: 50px;
     border-radius: 20px;
+    box-shadow: 0 10px 16px rgba(68, 68, 68, 1),
+    inset 0px -1px 16px 1px rgba(0, 0, 0, 5);
+}
+
+.userProfileNormal a {
+    color: white;
+    text-decoration: underline;
+}
+
+.userProfileNormal a:hover {
+    color: #bfc7d3;
+    text-decoration: underline;
+}
+
+/**Admin side**/
+
+.userProfileAdmin {
+    position: absolute;
+    top: 20%;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.userProfileAdmin .titleProfile {
+    text-align: center;
+}
+
+.userProfileAdmin table {
+    color: white;
+    justify-content: space-evenly;
+    width: 900px;
+    height: 300px;
+    padding: 50px;
     text-decoration: none;
+    background-color: #1f2029;
+    border-radius: 20px;
+    border-spacing: 0px;
+    box-shadow: 0 10px 16px rgba(68, 68, 68, 1),
+    inset 0px -1px 16px 1px rgba(0, 0, 0, 5);
+}
+
+.userProfileAdmin table tr td {
+    border-bottom: solid;
+    table-layout: fixed;
+}
+
+.userProfileAdmin table tr td {
+    text-align: center;
+    border-right: solid;
+}
+
+.userProfileAdmin table tr td button {
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    color: black;
+    background:lightcoral;
+    text-decoration: none;
+    width: fit-content;
+    box-shadow: 0 3px 16px rgba(68, 68, 68, 1),
+    inset 0px -5px 16px 1px rgb(122, 60, 20);
+}
+
+.userProfileAdmin table tr .coll_4 {
+    border-right: none;
 }
