@@ -68,13 +68,28 @@ function rectangle(){
     return [rectGauche,rectDroit,median]
 }
 
+/**
+ * Retourne la probabilité de p(x<t) en calculant p(a<=x<=b)
+ * Pas de paramètre et dépend de a,b,sigma,m et t
+ * @returns {*|number}
+ */
 function trapez(){
+    /*point k en a
+    parcourt de tout les points entre a et b
+    sommeTrape représente la somme des aires des trapèzes,
+    soit la probabilité de p(a<=x<=b)
+     */
     var k=a
     var sommeTrap =0
     while (k<b){
+        /*Fait la somme des aires
+        aire : (l1+l2)*h/2 -> aire d'un trapèze
+        l1 = k; l2 = k+0.1; h = l'interval entre deux point soit 1/n
+         */
         sommeTrap += (loiNormal(k) + loiNormal(k+add))*add/2
         k = Math.round((k+0.1)*10.0)/10.0
     }
+    //converti la somme des aires des trapèzes pour donner la probabilité p(x<t)
     var res = convertiProba(sommeTrap)
     afficheMoi("Trapèze",res)
     return res
