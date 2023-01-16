@@ -28,14 +28,34 @@ function init(){
     rectangle()
 }
 
-
+/**
+ * Calcul de la probabilité de p(x<t) par la méthode des rectangles
+ * @returns {(*|number)[]} Un liste de nombres réels positifs :
+ * 1ère valeur -> probabilité p(x<t) suppérieurs à cette valeur
+ * 2ème valeur -> probabilité p(x<t) inférieurs à cette valeur
+ * 3ème valeur -> probabilité p(x<t) environ égale à cette valeur
+ */
 function rectangle(){
+    /*Commence en a+1
+    Parcourt des points de a+1 à b-1
+    Initialisation d'une variable sommeCommun,
+    pour récupérer la somme des aires des rectangles
+    Pour ne pas modifier la constante a, on initialise une variable k
+     */
     var k = a+add
     var sommeCommun =0
     while (k<b){
         sommeCommun += loiNormal(k)
+        /*Arrondi k à un chiffre après la virgule :
+        problème rencontré k = 0.1000002 */
         k = Math.round((k+add)*10.0)/10.0
     }
+    /*Multiplication de la somme des longueurs par la largeur
+    Différenciation des rectangles Droits:
+    par la première valeur interval, soit a
+    Différenciation des rectangles Gauches:
+    par la dernière valeur interval, soit b
+    */
     sommeCommun *= add
     var rectDroit = sommeCommun + loiNormal(a)*add
     var rectGauche =sommeCommun + loiNormal(b)*add
