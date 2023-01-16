@@ -1,0 +1,17 @@
+{
+  "modules": [{
+      "name": "Probabilités",
+      "module_name": "module_proba",
+      "domain_name": "Maths",
+      "credits": "module: Brandon Bui, implementation: Samuel Charton",
+      "description": "Module permettant d'effectuer des calculs de probabilitée"
+    },
+    {
+      "name": "Cryptographie",
+      "module_name": "module_crypto",
+      "domain_name": "Securité",
+      "credits": "module: Yanis Merabet, implementation: Samuel Charton",
+      "description": "Module permettant de crypter et décrypter un message"
+    }
+  ]
+}

@@ -1,16 +1,20 @@
 import React, {useState} from 'react';
-import '../styles/Login.css';
+import '../styles/Login_signin.css';
 import human from '../assets/human.svg';
 import lock from '../assets/lock.svg';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import $ from "jquery";
-import {Navigate} from "react-router";
+import md5 from "md5";
 
-function Login() {
+function Login({logged, setLogged, user, setUser, setRank, rank}) {
 
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [result , setResult] = useState("");
+
+    const updateLogged = (pValue) => {
+        setLogged(pValue);
+    };
 
     const handleSumbit = (e) => {
         e.preventDefault();
@@ -38,8 +42,23 @@ function Login() {
 
     const results = () =>{
         // eslint-disable-next-line
-        if(result == 1){
-            return <Navigate to="/"/>;
+        const navigate = useNavigate();
+        let lStrRank = "";
+        let lResult = 0;
+
+        for (let i = 0; i < result.length; i++) {
+            if (result[i] == 1){
+                lResult = 1;
+            }else{
+                lStrRank += result[i];
+            }
+        }
+
+        if(lResult == 1){
+            updateLogged(true);
+            setUser(login);
+            setRank(md5(lStrRank));
+            navigate("/");
         }
         else {
             return (<p>{result}</p>);
@@ -50,7 +69,7 @@ function Login() {
         <div className="card">
             <h4 className="title">Log In!</h4>
             <form
-                action="http://localhost:8000/login.php"
+                action="http://localhost:7000/login.php"
                 method="post"
                 onSubmit={(event) => handleSumbit(event)}
             >

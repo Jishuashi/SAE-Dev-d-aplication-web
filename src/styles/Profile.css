@@ -1,0 +1,27 @@
+.userProfileNormal {
+    position: absolute;
+    top: 20%;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.userProfileNormal .userTitle {
+
+}
+
+.userProfileNormal .titleProfile {
+    text-align: center;
+}
+
+.userProfileNormal table {
+    background-color: #2a2b38;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: space-evenly;
+    width: 300px;
+    height: 300px;
+    padding: 50px;
+    border-radius: 20px;
+    text-decoration: none;
+}

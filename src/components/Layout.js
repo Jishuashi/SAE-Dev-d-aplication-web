@@ -2,10 +2,10 @@ import {Outlet} from "react-router-dom";
 import Navigation from "./Navigation";
 import React from "react";
 
-function Layout (){
+function Layout ({logged, setLogged, unconnected, setUnconnected}) {
     return (
         <div>
-            <Navigation/>
+            <Navigation logged={logged} setLogged={setLogged} unconnected={unconnected} setUnconnected={setUnconnected}/>
             <Outlet />
         </div>
     );

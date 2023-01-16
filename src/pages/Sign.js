@@ -1,10 +1,9 @@
 import React, {useState} from "react";
-import "../styles/Sign.css";
+import "../styles/Login_signin.css";
 import emailLogo from "../assets/email.svg";
 import lock from "../assets/lock.svg";
 import human from "../assets/human.svg";
-import {Link} from "react-router-dom";
-import {Navigate}  from "react-router";
+import {Link, useNavigate} from "react-router-dom";
 import $ from "jquery";
 
 
@@ -98,9 +97,11 @@ function Sign(){
 
     // eslint-disable-next-line
     const Results = () =>{
+        const navigate = useNavigate();
+
         // eslint-disable-next-line
         if(result == 1){
-            return <Navigate to="/" />;
+            navigate("/");
         }
         else {
             return (<p>{result}</p>);
@@ -112,7 +113,7 @@ function Sign(){
         <div className="card">
         <h4 className="title">Sign In!</h4>
             <form
-                action="http://localhost:8000/signin.php"
+                action="http://localhost:7000/signin.php"
                 method="post"
                 onSubmit={(event) => handleSumbit(event)}
             >
