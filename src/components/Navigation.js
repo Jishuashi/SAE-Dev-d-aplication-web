@@ -20,26 +20,26 @@ function Navigation({logged, setLogged, unconnected, setUnconnected}) {
                 <Link to="/"><img src={logo} className="logo" alt="logo"/></Link>
                 <div className="rightNav">
                     <Link className="link" to="/domains">Domaine</Link>
-                    <div className="menu">
-                        <nav role="navigation">
-                            <div id="menuToggle">
-                                <input type="checkbox"/>
+                </div>
+                <div className="menu">
+                    <nav role="navigation">
+                        <div id="menuToggle">
+                            <input type="checkbox"/>
 
-                                <span></span>
-                                <span></span>
-                                <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
 
-                                <ul id="menu">
-                                    <Link to="/profile">
-                                        <li>Mon Profil</li>
-                                    </Link>
-                                    <Link to="/" onClick={handleChangeLogged}>
-                                        <li>Deconexion</li>
-                                    </Link>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
+                            <ul id="menu">
+                                <Link to="/profile">Mon Profil
+                                    <li></li>
+                                </Link>
+                                <Link to="/" onClick={handleChangeLogged}>Deconexion
+                                    <li></li>
+                                </Link>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
             </nav>
         </div>);

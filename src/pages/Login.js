@@ -69,7 +69,7 @@ function Login({logged, setLogged, user, setUser, setRank, rank}) {
         <div className="card">
             <h4 className="title">Log In!</h4>
             <form
-                action="http://localhost:8000/login.php"
+                action="http://localhost:7000/login.php"
                 method="post"
                 onSubmit={(event) => handleSumbit(event)}
             >

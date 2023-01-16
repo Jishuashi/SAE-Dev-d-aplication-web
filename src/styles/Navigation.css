@@ -24,7 +24,7 @@
 .rightNav {
     width: 70%;
     position: relative;
-    left: 27%;
+    left: 20%;
     text-align: right;
     margin-right: 10px;
 }
@@ -47,7 +47,7 @@
     display: block;
     position: absolute;
     left: 95%;
-    top: 5%;
+    top: 35%;
 
     z-index: 1;
 
