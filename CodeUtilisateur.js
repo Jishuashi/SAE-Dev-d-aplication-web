@@ -16,18 +16,29 @@ sinon p(m<x<t)
  */
 let a = 0
 let b =0
-if(t>m){
-    a = m
-    b = Math.abs(t)
-}else {
-    a = Math.abs(t)
-    b = m
+function inivariable() {
+    if (t > m) {
+        a = m
+        b = Math.abs(t)
+    } else {
+        a = Math.abs(t)
+        b = m
+    }
 }
 const add = Math.round((1/n)*10.0)/10.0
+//variable de test
+const list_t = [1,2,2.4]
+const list_m = [1,1.5,3]
+const list_sigma = [0.1,0.25,1.23]
+const list_resul = [0.5,0.97725,0.31284]
+let result_searc = [list_t,list_m,list_sigma,list_resul]
+
 function init(){
+    test_result_search(result_searc)
+    inivariable()
     rectangle()
-    simpson()
     trapez()
+    simpson()
 }
 
 /**
@@ -44,6 +55,8 @@ function rectangle(){
     pour récupérer la somme des aires des rectangles
     Pour ne pas modifier la constante a, on initialise une variable k
      */
+    inivariable()
+    console.log("a :"+a)
     var k = a+add
     var sommeCommun =0
     while (k<b){
@@ -136,4 +149,32 @@ function afficheMoi(text, number){
     var result = document.getElementById("simpson")
     result.appendChild(document.createTextNode(text+": "+number.toString()))
     result.appendChild(document.createElement("br"))
+}
+
+/*
+Fonction test
+ */
+function test_result_search(myvar){
+    for (var i=0;i<myvar[0].length;i++){
+        t = myvar[0][i]
+        m = myvar[1][i]
+        sigma = myvar[2][i]
+        var result_search = myvar[3][i]
+
+        /*Teste de la méthode des rectangles
+         */
+        var result_get = rectangle()
+        console.log(result_get)
+        if (result_get[0]<result_search && result_get[1]>result_search){
+            console.log("1.Bon resultat")
+        }else {
+            console.log("1.Mauvais resultat")
+        }
+        if (result_get[2] == result_search){
+            console.log("2.Bon resultat")
+        }else {
+            console.log("2.Mauvais resultat")
+        }
+
+    }
 }
