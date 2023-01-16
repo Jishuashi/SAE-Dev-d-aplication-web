@@ -26,6 +26,7 @@ if(t>m){
 const add = Math.round((1/n)*10.0)/10.0
 function init(){
     rectangle()
+    simpson()
 }
 
 /**
@@ -64,6 +65,28 @@ function rectangle(){
     var median = (rectGauche+rectDroit)/2
     median = Math.round(median*100000.0)/100000.0
     return [rectGauche,rectDroit,median]
+}
+function simpson(){
+    var k = a
+    var sommeGauche = 0
+    var sommeDroit = loiNormal(a+((2*k+1)*(b-a))/(2*n))
+    var x
+    var y
+    k += 1
+    while (k<=n-1){
+        x = a + (k*(b-a))/n
+        y = a +((2*k+1)*(b-a))/(2*n)
+
+        sommeGauche += loiNormal(x)
+        sommeDroit += loiNormal(y)
+
+        k += 1
+    }
+    sommeGauche *= 2
+    sommeDroit *= 4
+    var resultat = (loiNormal(a)+loiNormal(b)+sommeGauche+sommeDroit)*(b-a)/(6*n)
+    resultat = convertiProba(resultat)
+    afficheMoi("Resultat",resultat)
 }
 
 /**
