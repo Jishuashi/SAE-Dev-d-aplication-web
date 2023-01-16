@@ -67,26 +67,12 @@ function rectangle(){
     return [rectGauche,rectDroit,median]
 }
 function simpson(){
-    var k = a
-    var sommeGauche = 0
-    var sommeDroit = loiNormal(a+((2*k+1)*(b-a))/(2*n))
-    var x
-    var y
-    k += 1
-    while (k<=n-1){
-        x = a + (k*(b-a))/n
-        y = a +((2*k+1)*(b-a))/(2*n)
-
-        sommeGauche += loiNormal(x)
-        sommeDroit += loiNormal(y)
-
-        k += 1
-    }
-    sommeGauche *= 2
-    sommeDroit *= 4
-    var resultat = (loiNormal(a)+loiNormal(b)+sommeGauche+sommeDroit)*(b-a)/(6*n)
-    resultat = convertiProba(resultat)
-    afficheMoi("Resultat",resultat)
+    var fa = loiNormal(a)
+    var fb = loiNormal(b)
+    var fab = 4*loiNormal((a+b)/2)
+    var result = (fb+fab+fa)*(b-a)/6
+    result = convertiProba(result)
+    return result
 }
 
 /**
