@@ -27,6 +27,7 @@ const add = Math.round((1/n)*10.0)/10.0
 function init(){
     rectangle()
     simpson()
+    trapez()
 }
 
 /**
@@ -66,6 +67,20 @@ function rectangle(){
     median = Math.round(median*100000.0)/100000.0
     return [rectGauche,rectDroit,median]
 }
+
+function trapez(){
+    var k=a
+    var sommeTrap =0
+    while (k<b){
+        sommeTrap += (loiNormal(k) + loiNormal(k+add))*add/2
+        k = Math.round((k+0.1)*10.0)/10.0
+    }
+    var res = convertiProba(sommeTrap)
+    afficheMoi("Trapèze",res)
+    return res
+}
+
+
 /**
  * Calcule de la probabilité p(x<t)
  * @returns {*|number} nombre réel positif
