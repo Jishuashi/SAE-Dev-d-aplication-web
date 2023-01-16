@@ -55,8 +55,6 @@ function rectangle(){
     pour récupérer la somme des aires des rectangles
     Pour ne pas modifier la constante a, on initialise une variable k
      */
-    inivariable()
-    console.log("a :"+a)
     var k = a+add
     var sommeCommun =0
     while (k<b){
@@ -104,7 +102,6 @@ function trapez(){
     }
     //converti la somme des aires des trapèzes pour donner la probabilité p(x<t)
     var res = convertiProba(sommeTrap)
-    afficheMoi("Trapèze",res)
     return res
 }
 
@@ -160,21 +157,39 @@ function test_result_search(myvar){
         m = myvar[1][i]
         sigma = myvar[2][i]
         var result_search = myvar[3][i]
-
-        /*Teste de la méthode des rectangles
-         */
-        var result_get = rectangle()
-        console.log(result_get)
-        if (result_get[0]<result_search && result_get[1]>result_search){
-            console.log("1.Bon resultat")
-        }else {
-            console.log("1.Mauvais resultat")
-        }
-        if (result_get[2] == result_search){
-            console.log("2.Bon resultat")
-        }else {
-            console.log("2.Mauvais resultat")
-        }
-
+        inivariable()
+        test_rectangle(result_search)
+        test_trapez(result_search)
+        test_simpson(result_search)
+    }
+}
+/*Teste de la méthode des rectangles*/
+function test_rectangle(myvar){
+    var result_get = rectangle()
+    if (result_get[0]<myvar && result_get[1]>myvar){
+        console.log("1.Bon resultat")
+    }else {
+        console.log("1.Mauvais resultat")
+    }
+    if (result_get[2] == myvar){
+        console.log("2.Bon resultat")
+    }else {
+        console.log("2.Mauvais resultat")
+    }
+}
+function test_trapez(myvar){
+    var result_get = trapez()
+    if (result_get == myvar){
+        console.log("2.Bon resultat")
+    }else {
+        console.log("2.Mauvais resultat")
+    }
+}
+function test_simpson(myvar){
+    var result_get = simpson()
+    if (result_get == myvar){
+        console.log("2.Bon resultat")
+    }else {
+        console.log("2.Mauvais resultat")
     }
 }
