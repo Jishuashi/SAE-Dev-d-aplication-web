@@ -23,31 +23,27 @@ if(t>m){
     a = Math.abs(t)
     b = m
 }
+const add = Math.round((1/n)*10.0)/10.0
 function init(){
     rectangle()
 }
 
 
 function rectangle(){
-    var k = a
-    var sommeRectangleGauche =0
-    var sommeRectangleDroit =0
-    var sommeMedian=0
-    while (k<=b-0.1){
-        sommeRectangleGauche += loiNormal(k)
-        sommeMedian += loiNormal((k+k+0.1)/2)
-        k = Math.round((k+0.1)*10.0)/10.0
-        sommeRectangleDroit += loiNormal(k)
+    var k = a+add
+    var sommeCommun =0
+    while (k<b){
+        sommeCommun += loiNormal(k)
+        k = Math.round((k+add)*10.0)/10.0
     }
-    sommeRectangleGauche *= (b-a)/n
-    sommeRectangleDroit *= (b-a)/n
-    sommeMedian *= (b-a)/n
-    sommeRectangleDroit = convertiProba(sommeRectangleDroit)
-    sommeRectangleGauche = convertiProba(sommeRectangleGauche)
-    sommeMedian = convertiProba(sommeMedian)
-    afficheMoi("Gauche",sommeRectangleGauche)
-    afficheMoi("Droit",sommeRectangleDroit)
-    afficheMoi("Median",sommeMedian)
+    sommeCommun *= add
+    var rectDroit = sommeCommun + loiNormal(a)*add
+    var rectGauche =sommeCommun + loiNormal(b)*add
+    rectDroit = convertiProba(rectDroit)
+    rectGauche = convertiProba(rectGauche)
+    var median = (rectGauche+rectDroit)/2
+    median = Math.round(median*100000.0)/100000.0
+    return [rectGauche,rectDroit,median]
 }
 
 /**
