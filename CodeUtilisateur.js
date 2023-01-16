@@ -66,11 +66,15 @@ function rectangle(){
     median = Math.round(median*100000.0)/100000.0
     return [rectGauche,rectDroit,median]
 }
+/**
+ * Calcule de la probabilité p(x<t)
+ * @returns {*|number} nombre réel positif
+ */
 function simpson(){
-    var fa = loiNormal(a)
-    var fb = loiNormal(b)
-    var fab = 4*loiNormal((a+b)/2)
-    var result = (fb+fab+fa)*(b-a)/6
+    var fa = loiNormal(a) //--> f(a)
+    var fb = loiNormal(b) //--> f(b)
+    var fab = 4*loiNormal((a+b)/2)  //-->4f((a+b)/2)
+    var result = (fb+fab+fa)*(b-a)/6 //-->(b-a)/6 * [f(a)+4f((a+b)/2)+f(b)]
     result = convertiProba(result)
     return result
 }
