@@ -13,7 +13,7 @@ function Profile({rank, user, logged}) {
     const getProfile = () => {
         $.ajax({
             type: "POST",
-            url: "http://localhost:7000/user.php",
+            url: "http://localhost:80/php/user.php",
             data: {login: user},
             success(data) {
                 setResultUser(data);
@@ -41,7 +41,7 @@ function Profile({rank, user, logged}) {
     const getUsers = () => {
         $.ajax({
             type: "POST",
-            url: "http://localhost:7000/admin.php",
+            url: "http://localhost:80/php/admin.php",
             success(data) {
                 setResultAdmin(data);
             },
@@ -71,7 +71,7 @@ function Profile({rank, user, logged}) {
 
             $.ajax({
                 type: "POST",
-                url: "http://localhost:7000/delUser.php",
+                url: "http://localhost:80/php/delUser.php",
                 data: {login: lArrayUsers[x][0]},
                 success(data) {
                     console.log(data);

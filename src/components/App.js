@@ -66,7 +66,7 @@ function App() {
                         <Route path="connexion" element={<Login logged={logged} setLogged={setLogged} user= {user} setUser={setUser} rank={rank} setRank={setRank}/>} />
                         <Route path="inscription" element={<Sign />} />
                         <Route path="domains" element={<Domains logged={logged}/>} />
-                        <Route path="domains/modules/" element={<Modules logged={logged} />} />
+                        <Route path="domains/modules/" element={<Modules logged={logged} user={user} />} />
                         <Route path="domains/modules/module_proba" element={<ModuleProba logged={logged} />} />
                         <Route path="domains/modules/module_crypto" element={<ModuleCrypto  logged={logged} />} />
                         <Route path="notAllowed" element={<NotAllowed />} />

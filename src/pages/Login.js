@@ -25,8 +25,6 @@ function Login({logged, setLogged, user, setUser, setRank, rank}) {
             url: form.attr("action"),
             data: form.serialize(),
             success(data) {
-                console.log("Connexion réussite");
-                console.log(data);
                 setResult(data);
             },
         });
@@ -69,7 +67,7 @@ function Login({logged, setLogged, user, setUser, setRank, rank}) {
         <div className="card">
             <h4 className="title">Log In!</h4>
             <form
-                action="http://localhost:7000/login.php"
+                action="http://localhost:80/php/login.php"
                 method="post"
                 onSubmit={(event) => handleSumbit(event)}
             >

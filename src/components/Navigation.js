@@ -1,18 +1,24 @@
 import logo from '../assets/logo.png';
 import '../styles/Navigation.css';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import React from "react";
+import $ from "jquery";
 
 /**
  * Retourne un Élément React contenant la div de navigation du site
  * @returns {JSX.Element} retourne <Navigation />
  */
 function Navigation({logged, setLogged, unconnected, setUnconnected}) {
+    const navigate = useNavigate();
 
-    const handleChangeLogged = () => {
+    function delayAndGo(e, path) {
+        e.preventDefault();
         setLogged(!logged);
         setUnconnected(true);
+        setTimeout(() => navigate(path), 100);
     }
+
+
 
     if (logged) {
         return (<div className="divNav">
@@ -34,7 +40,7 @@ function Navigation({logged, setLogged, unconnected, setUnconnected}) {
                                 <Link to="/profile">Mon Profil
                                     <li></li>
                                 </Link>
-                                <Link to="/" onClick={handleChangeLogged}>Deconexion
+                                <Link to="/" onClick={(e) => delayAndGo(e, `/`)}>Deconexion
                                     <li></li>
                                 </Link>
                             </ul>
