@@ -118,7 +118,7 @@ function Profile({rank, user, logged}) {
                     </table>
                 </div>
             );
-        } else {
+        } else if (rank == "a1f36c02637881504e71a53a8d754923") {
             // Admin profile
             return (<div className={"userProfileAdmin"}>
                 <h1 className={"titleProfile"}>Liste des utilisateurs :</h1>

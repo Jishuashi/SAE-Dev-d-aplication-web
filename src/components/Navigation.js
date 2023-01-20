@@ -40,7 +40,7 @@ function Navigation({logged, setLogged, unconnected, setUnconnected}) {
                                 <Link to="/profile">Mon Profil
                                     <li></li>
                                 </Link>
-                                <Link to="/" onClick={(e) => delayAndGo(e, `/`)}>Deconexion
+                                <Link to="/" onClick={(e) => delayAndGo(e, `/`)}>Deconnexion
                                     <li></li>
                                 </Link>
                             </ul>
