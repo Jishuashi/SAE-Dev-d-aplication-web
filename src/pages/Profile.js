@@ -47,28 +47,28 @@ function Profile({rank, user, logged}) {
             },
         });
 
-        const lArrayResult = resultAdmin.split(";");
+        const lArrayResult = resultAdmin.split(";;");
         let lArrayUsers = [];
         let lRetrun = [];
 
 
         for (let i = 0; i < lArrayResult.length; i++) {
-            lArrayUsers.push(lArrayResult[i].split(" "));
+            lArrayUsers.push(lArrayResult[i].split(";"));
         }
 
         lArrayUsers.splice(-1, 1);
 
-        $('#col > button').click(function () {
+        $('button').click(function () {
             var x = $(this).attr('id');
-            const lArrayResult = resultAdmin.split(";");
+            const lArrayResult = resultAdmin.split(";;");
             let lArrayUsers = [];
 
             for (let i = 0; i < lArrayResult.length; i++) {
-                lArrayUsers.push(lArrayResult[i].split(" "));
+                lArrayUsers.push(lArrayResult[i].split(";"));
             }
 
             lArrayUsers.splice(-1, 1);
-
+            console.log(lArrayUsers[x][0]);
             $.ajax({
                 type: "POST",
                 url: "http://localhost:80/php/delUser.php",

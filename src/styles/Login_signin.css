@@ -82,17 +82,23 @@
     color: #bfc7d3;
 }
 
-.link{
+.link_signIn {
     color: white;
+    font-size: 75%;
 }
 
-.useTerm{
+.useTerm {
     margin-top: .5rem;
 }
 
 
-.linkUse{
+.linkUse {
     margin-top: .5rem;
     margin-right: 20px;
     color: white;
+    font-size: 90%;
+}
+.errorLogInSignIn {
+    color: lightcoral;
+    font-weight: bold;
 }

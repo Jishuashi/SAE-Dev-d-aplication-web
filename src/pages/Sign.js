@@ -62,20 +62,20 @@ function Sign(){
 
         // eslint-disable-next-line
         if(confEmail != email || email === "" && confEmail === ""){
-            error = "Les adresses mail ne corespondent pas !";
+            error = "Les adresses mail ne correspondent pas !";
             setResult(error);
             console.log(error)
             return;
         }else {
             // eslint-disable-next-line
             if(confPassword != password || password == "" && confPassword == ""){
-                error = "Les Mot de passes ne corespondent pas !";
+                error = "Les mots de passe ne correspondent pas !";
                 console.log(error)
                 setResult(error);
                 return;
             }else {
                 if(!check){
-                    error = "Vous n'avez pas accepter les conditions général d'utilisation";
+                    error = "Vous n'avez pas accepté les conditions générales d'utilisation";
                     console.log(error)
                     setResult(error);
                     return;
@@ -104,14 +104,14 @@ function Sign(){
             navigate("/");
         }
         else {
-            return (<p>{result}</p>);
+            return (<p className={'errorLogInSignIn'}>{result}</p>);
         }
     }
 
     return(
         <div className="signIn">
         <div className="card">
-        <h4 className="title">Sign In!</h4>
+        <h4 className="title">Inscription</h4>
             <form
                 action="http://localhost:80/php/signin.php"
                 method="post"
@@ -174,13 +174,13 @@ function Sign(){
                 />
             </div>
             <div className="useTerm">
-                <label htmlFor="check"><Link className="linkUse">Condition Général</Link></label>
+                <label htmlFor="check"><Link className="linkUse">j'ai lu et accepte les conditions générales d'utilisation</Link></label>
                 <input autoComplete="off" id="check" name="check" type="checkbox" onClick={(event) => changeCheck(event)}/>
             </div>
-            <button className="btn" type="submit">SignIn</button>
+            <button className="btn" type="submit">S'inscrire</button>
         </form>
             {Results()}
-        <Link className="link" to="/connexion">Déjà un compte ?</Link>
+        <Link className="link_signIn" to="/connexion">Vous avez déjà un compte ?</Link>
     </div>
     </div>);
 }

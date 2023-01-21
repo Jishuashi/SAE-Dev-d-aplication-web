@@ -13,6 +13,7 @@ import ModuleProba from "../pages/domains/modules/Maths/module_proba";
 import NotAllowed from "../pages/NotAllowed";
 import Profile from "../pages/Profile";
 import ChangePass from "../pages/ChangePass";
+import Stats from "../pages/Stats";
 
 
 function App() {
@@ -61,7 +62,7 @@ function App() {
         <div className="App">
             <HashRouter>
                 <Routes history={Router.history}>
-                    <Route path="/" element={<Layout logged={logged} setLogged={setLogged} unconnected={unconnected} setUnconnected={setUnconnected}/>}>
+                    <Route path="/" element={<Layout logged={logged} setLogged={setLogged} unconnected={unconnected} setUnconnected={setUnconnected} rank={rank}/>}>
                         <Route index element={<Home logged={logged} user={user}/>} />
                         <Route path="connexion" element={<Login logged={logged} setLogged={setLogged} user= {user} setUser={setUser} rank={rank} setRank={setRank}/>} />
                         <Route path="inscription" element={<Sign />} />
@@ -72,6 +73,7 @@ function App() {
                         <Route path="notAllowed" element={<NotAllowed />} />
                         <Route path="profile" element={<Profile rank={rank} user={user} logged={logged}/> }/>
                         <Route path="changepass" element={<ChangePass /> }/>
+                        <Route path="stats" element={<Stats />} />
                     </Route>
                 </Routes>
             </HashRouter>

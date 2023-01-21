@@ -8,16 +8,21 @@ import $ from "jquery";
  * Retourne un Élément React contenant la div de navigation du site
  * @returns {JSX.Element} retourne <Navigation />
  */
-function Navigation({logged, setLogged, unconnected, setUnconnected}) {
+function Navigation({logged, setLogged, unconnected, setUnconnected, rank}) {
     const navigate = useNavigate();
 
-    function delayAndGo(e, path) {
+    const delayAndGo = (e, path) => {
         e.preventDefault();
         setLogged(!logged);
         setUnconnected(true);
         setTimeout(() => navigate(path), 100);
     }
 
+    const statPage = () => {
+        if (rank === "a1f36c02637881504e71a53a8d754923") {
+            return <Link to="/stats">Statistiques <li></li></Link>
+        }
+    }
 
 
     if (logged) {
@@ -40,9 +45,11 @@ function Navigation({logged, setLogged, unconnected, setUnconnected}) {
                                 <Link to="/profile">Mon Profil
                                     <li></li>
                                 </Link>
+                                {statPage()}
                                 <Link to="/" onClick={(e) => delayAndGo(e, `/`)}>Deconnexion
                                     <li></li>
                                 </Link>
+
                             </ul>
                         </div>
                     </nav>

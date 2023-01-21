@@ -59,13 +59,13 @@ function Login({logged, setLogged, user, setUser, setRank, rank}) {
             navigate("/");
         }
         else {
-            return (<p>{result}</p>);
+            return (<p className={'errorLogInSignIn'}>{result}</p>);
         }
     }
 
     return (
         <div className="card">
-            <h4 className="title">Log In!</h4>
+            <h4 className="title">S'identifier</h4>
             <form
                 action="http://localhost:80/php/login.php"
                 method="post"
@@ -87,11 +87,11 @@ function Login({logged, setLogged, user, setUser, setRank, rank}) {
                            onInput={(event) => handleChangePass(event)}
                     />
                 </div>
-                <button className="btn" type="submit">Login</button>
-                <Link path="/inscription" className="btn-link">Forgot your password?</Link>
+                <button className="btn" type="submit">Se connecter</button>
+                <Link path="/inscription" className="btn-link">Mot de passe oublié ?</Link>
             </form>
             {results()}
-            <Link className="btn-link" to="/inscription">Pas de compte ?</Link>
+            <Link className="btn-link" to="/inscription">Pas encore de compte ?</Link>
         </div>
     );
 }

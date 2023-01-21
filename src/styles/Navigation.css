@@ -1,4 +1,7 @@
 .divNav {
+    position: absolute;
+    top: 0%;
+    width: 100%;
     box-shadow: 0 10px 16px rgba(68, 68, 68, 1),
     inset 0px -10px 16px 1px rgba(0, 0, 0, 5);
 }
@@ -38,12 +41,11 @@
     color: #bfc7d3;
 }
 
-.link{
+.link {
     margin-left: 2%;
 }
 
-#menuToggle
-{
+#menuToggle {
     display: block;
     position: absolute;
     left: 95%;
@@ -55,22 +57,19 @@
     user-select: none;
 }
 
-#menuToggle Link
-{
+#menuToggle a {
     text-decoration: none;
     color: #000100;
 
     transition: color 0.3s ease;
 }
 
-#menuToggle Link:hover
-{
+#menuToggle a:hover {
     color: tomato;
 }
 
 
-#menuToggle input
-{
+#menuToggle input {
     display: block;
     width: 40px;
     height: 32px;
@@ -86,8 +85,7 @@
     -webkit-touch-callout: none;
 }
 
-#menuToggle span
-{
+#menuToggle span {
     display: block;
     width: 33px;
     height: 4px;
@@ -106,45 +104,40 @@
     opacity 0.55s ease;
 }
 
-#menuToggle span:first-child
-{
+#menuToggle span:first-child {
     transform-origin: 0% 0%;
 }
 
-#menuToggle span:nth-last-child(2)
-{
+#menuToggle span:nth-last-child(2) {
     transform-origin: 0% 100%;
 }
 
-#menuToggle input:checked ~ span
-{
+#menuToggle input:checked ~ span {
     opacity: 1;
     transform: rotate(45deg) translate(-2px, -1px);
     background: #232323;
 }
 
 
-#menuToggle input:checked ~ span:nth-last-child(3)
-{
+#menuToggle input:checked ~ span:nth-last-child(3) {
     opacity: 0;
     transform: rotate(0deg) scale(0.2, 0.2);
 }
 
 
-#menuToggle input:checked ~ span:nth-last-child(2)
-{
+#menuToggle input:checked ~ span:nth-last-child(2) {
     transform: rotate(-45deg) translate(0, -1px);
 }
 
-#menu
-{
-    position: fixed;
+#menu {
+    position: relative;
     width: 300px;
+    height: 100%;
     margin: -100px 0 0 -150px;
-    padding: 50px;
-    padding-top: 125px;
+    padding: 120px 50px 100% 50px;
 
     background: #ededed;
+    border-bottom-left-radius: 10px;
     list-style-type: none;
     -webkit-font-smoothing: antialiased;
 
@@ -155,13 +148,11 @@
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
-#menu li
-{
+#menu li {
     padding: 10px 0;
     font-size: 22px;
 }
 
-#menuToggle input:checked ~ ul
-{
+#menuToggle input:checked ~ ul {
     transform: none;
 }

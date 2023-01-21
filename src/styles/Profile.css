@@ -62,6 +62,7 @@
     border-spacing: 0px;
     box-shadow: 0 10px 16px rgba(68, 68, 68, 1),
     inset 0px -1px 16px 1px rgba(0, 0, 0, 5);
+    z-index: -1;
 }
 
 .userProfileAdmin table tr td {
@@ -75,6 +76,11 @@
 }
 
 .userProfileAdmin table tr td button {
+
+}
+
+.userProfileAdmin button {
+    position: relative;
     border: none;
     padding: 10px;
     border-radius: 20px;
@@ -84,6 +90,7 @@
     width: fit-content;
     box-shadow: 0 3px 16px rgba(68, 68, 68, 1),
     inset 0px -5px 16px 1px rgb(122, 60, 20);
+    z-index: 1;
 }
 
 .userProfileAdmin table tr .coll_4 {
