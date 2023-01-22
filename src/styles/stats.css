@@ -1,3 +1,57 @@
 .statsDiv {
-    margin-top: 10%;
+    position: absolute;
+    top: 10%;
+    right: 50%;
+    transform: translateX(50%);
 }
+
+.statsDiv .titleStat {
+    text-align: center;
+}
+
+.statsDiv table {
+    color: white;
+    justify-content: space-evenly;
+    width: 900px;
+    height: 300px;
+    padding: 50px;
+    text-decoration: none;
+    background-color: #1f2029;
+    border-radius: 20px;
+    border-spacing: 0px;
+    box-shadow: 0 10px 16px rgba(68, 68, 68, 1),
+    inset 0px -1px 16px 1px rgba(0, 0, 0, 5);
+    z-index: -1;
+}
+
+.statsDiv table tr td {
+    border: solid 2px;
+    table-layout: fixed;
+}
+
+.statsDiv table tr td {
+    text-align: center;
+}
+
+.statsDiv .StatDivModule{
+    margin-top:  2.5%
+}
+
+.statsDiv .StatDivUser{
+    margin-top: 2.5%;
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    width: 50%;
+    right: 25%;
+    justify-content: space-evenly;
+    padding: 15px;
+    text-decoration: none;
+    background-color: #1f2029;
+    border-radius: 20px;
+    border-spacing: 0px;
+    box-shadow: 0 10px 16px rgba(68, 68, 68, 1),
+    inset 0px -1px 16px 1px rgba(0, 0, 0, 5);
+    z-index: -1;
+}
+
