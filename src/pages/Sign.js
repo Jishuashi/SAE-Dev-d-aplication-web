@@ -15,8 +15,9 @@ function Sign(){
     const [confEmail, setConfEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confPassword, setConfPassword] = useState("");
-    const [result , setResult] = useState("");
+    const [result, setResult] = useState("");
     const [check, setCheck] = useState(false);
+
 
     var error = "";
 
@@ -64,34 +65,39 @@ function Sign(){
         if(confEmail != email || email === "" && confEmail === ""){
             error = "Les adresses mail ne correspondent pas !";
             setResult(error);
-            console.log(error)
             return;
         }else {
             // eslint-disable-next-line
-            if(confPassword != password || password == "" && confPassword == ""){
-                error = "Les mots de passe ne correspondent pas !";
-                console.log(error)
-                setResult(error);
-                return;
-            }else {
-                if(!check){
-                    error = "Vous n'avez pas accepté les conditions générales d'utilisation";
-                    console.log(error)
+            const emailValidate = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+            if (emailValidate.test(email)) {
+                if (confPassword != password || password == "" && confPassword == "") {
+                    error = "Les mots de passe ne correspondent pas !";
                     setResult(error);
                     return;
-                }else {
-                    $.ajax({
-                        type: "POST",
-                        url: form.attr("action"),
-                        data: form.serialize(),
-                        success(data) {
-                            console.log("Connexion réussite");
-                            console.log(data);
-                            setResult(data);
-                        },
-                    });
+                } else {
+                    if (!check) {
+                        error = "Vous n'avez pas accepté les conditions générales d'utilisation";
+                        setResult(error);
+                        return;
+                    } else {
+                        $.ajax({
+                            type: "POST",
+                            url: form.attr("action"),
+                            data: form.serialize(),
+                            success(data) {
+                                setResult(data);
+                            },
+                        });
+                    }
                 }
+            }else {
+                error = "L'adresse mail n'est pas valide";
+                setResult(error);
+                return;
+
             }
+
         }
     };
 
@@ -101,12 +107,14 @@ function Sign(){
 
         // eslint-disable-next-line
         if(result == 1){
-            navigate("/");
+            alert("Votre compte a bien été créé ! Connecter vous pour accéder à votre profil");
+            navigate("/connexion");
         }
         else {
             return (<p className={'errorLogInSignIn'}>{result}</p>);
         }
     }
+
 
     return(
         <div className="signIn">
@@ -134,12 +142,13 @@ function Sign(){
                 />
             </div>
             <div className="field">
-                    <img src={human} alt="human" className="input-icon"></img>
-                    <input autoComplete="off" id="login" placeholder="Identifant" className="input-field" name="login"
-                           type="text"
-                           value={login}
-                           onInput={(event) => handleChangeLogin(event)}
-                    />
+                <img src={human} alt="human" className="input-icon"></img>
+                <input autoComplete="off" pattern="[A-Za-z]{3,16}" id="login"
+                       placeholder="Identifant" className="input-field" name="login"
+                       type="text"
+                       value={login}
+                       onInput={(event) => handleChangeLogin(event)}
+                />
                 </div>
             <div className="field">
                 <img src={emailLogo} alt="email" className="input-icon"></img>

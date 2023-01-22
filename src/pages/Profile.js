@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import md5 from "md5";
 import '../styles/Profile.css';
 import $ from "jquery";
 
@@ -29,9 +28,9 @@ function Profile({rank, user, logged}) {
         let lCurrLine = [];
         for (let i = 0; i < lArrayProfil.length; i++) {
             lCurrLine.push(<tr key={i}>
-                <td className={"UserTitle"}>{lArrayFirtCol[i]}</td>
-                <td>‎ ‎ ‎</td>
-                <td>{lArrayProfil[i]}</td>
+                <td key={i^2} className={"UserTitle"}>{lArrayFirtCol[i]}</td>
+                <td key={i^3}>‎ ‎ ‎</td>
+                <td key={i^4}>{lArrayProfil[i]}</td>
             </tr>);
         }
 
@@ -86,16 +85,16 @@ function Profile({rank, user, logged}) {
             if (lArrayUsers[i][0] !== "gestion") {
                 for (let j = 0; j < lArrayUsers[i].length; j++) {
                     if (j % 4 === 3) {
-                        lCurrLine.push(<td id='col' className={`coll_${j}`} key={j}>{lArrayUsers[i][j]}</td>, <td
-                            className={`coll_${j + 1}`}>
+                        lCurrLine.push(<td id='col' className={`coll_${j}`} key={j^2}>{lArrayUsers[i][j]}</td>, <td
+                            className={`coll_${j + 1}`} key={(j+i)}>
                             <button id={i}>supprimer</button>
                         </td>);
                     } else {
-                        lCurrLine.push(<td id='col' className={`coll_${j}`} key={j}>{lArrayUsers[i][j]}</td>);
+                        lCurrLine.push(<td id='col' className={`coll_${j}`} key={j^2}>{lArrayUsers[i][j]}</td>);
                     }
                 }
                 lRetrun.push(
-                    <tr key={i} className={`row_${i}`}>{lCurrLine}</tr>
+                    <tr key={i^2} className={`row_${i}`}>{lCurrLine}</tr>
                 );
             }
         }
@@ -123,6 +122,7 @@ function Profile({rank, user, logged}) {
             return (<div className={"userProfileAdmin"}>
                 <h1 className={"titleProfile"}>Liste des utilisateurs :</h1>
                 <table>
+                    <thead>
                     <tr>
                         <td className={"coll_0"}>Identifiant</td>
                         <td className={"coll_1"}>Nom</td>
@@ -130,7 +130,10 @@ function Profile({rank, user, logged}) {
                         <td className={"coll_3"}>Email</td>
                         <td className={"coll_4"}>Action</td>
                     </tr>
-                    {getUsers()}
+                    </thead>
+                    <tbody>
+                        {getUsers()}
+                    </tbody>
                 </table>
             </div>);
         }

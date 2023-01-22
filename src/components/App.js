@@ -14,6 +14,7 @@ import NotAllowed from "../pages/NotAllowed";
 import Profile from "../pages/Profile";
 import ChangePass from "../pages/ChangePass";
 import Stats from "../pages/Stats";
+import {redirect} from "react-router";
 
 
 function App() {
@@ -23,7 +24,6 @@ function App() {
     // eslint-disable-next-line no-unused-vars
     const [rank, setRank] = useState("");
     const [cookies, setCookie, removeCookie] = useCookies(['log']);
-
     const setLogCookie = (value, pUser, pRank) => {
         setCookie('log', value, { path: '/' });
         setCookie('logUser', pUser, { path: '/' });
@@ -42,6 +42,7 @@ function App() {
         removeCookie('log', );
         removeCookie('logUser' );
         removeCookie('logRank');
+        redirect("/");
     }
 
     if (logged && cookies.log !== 'true'){
