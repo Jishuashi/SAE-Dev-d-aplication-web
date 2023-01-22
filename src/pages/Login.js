@@ -5,8 +5,9 @@ import lock from '../assets/lock.svg';
 import {Link, useNavigate} from "react-router-dom";
 import $ from "jquery";
 import md5 from "md5";
+import {redirect} from "react-router";
 
-function Login({logged, setLogged, user, setUser, setRank, rank}) {
+function Login({logged, setLogged, user, setUser, setRank, rank, getLogCookies}) {
 
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
@@ -56,6 +57,7 @@ function Login({logged, setLogged, user, setUser, setRank, rank}) {
             updateLogged(true);
             setUser(login);
             setRank(md5(lStrRank));
+
             navigate("/");
         }
         else {

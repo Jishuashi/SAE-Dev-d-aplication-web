@@ -30,11 +30,19 @@ function App() {
         setCookie('logRank', pRank, { path: '/' });
     }
 
+
+
     const getLogCookies = () => {
         if(cookies.log){
             setLogged(cookies.log);
-            setRank(cookies.logRank);
-            setUser(cookies.logUser);
+
+            if(cookies.logUser !== undefined){
+                setUser(cookies.logUser);
+            }
+
+            if(cookies.logRank !== undefined){
+                setRank(cookies.logRank);
+            }
         }
     }
 
@@ -42,7 +50,7 @@ function App() {
         removeCookie('log', );
         removeCookie('logUser' );
         removeCookie('logRank');
-        redirect("/");
+        setLogged(false);
     }
 
     if (logged && cookies.log !== 'true'){
@@ -55,7 +63,13 @@ function App() {
     }
 
     useEffect(() => {
-        getLogCookies();
+        if (cookies.log === 'true'){
+            setLogged(true);
+        }
+
+        if (logged && cookies.log === 'true'){
+            getLogCookies();
+        }
     })
 
 
@@ -65,7 +79,7 @@ function App() {
                 <Routes history={Router.history}>
                     <Route path="/" element={<Layout logged={logged} setLogged={setLogged} unconnected={unconnected} setUnconnected={setUnconnected} rank={rank}/>}>
                         <Route index element={<Home logged={logged} user={user}/>} />
-                        <Route path="connexion" element={<Login logged={logged} setLogged={setLogged} user= {user} setUser={setUser} rank={rank} setRank={setRank}/>} />
+                        <Route path="connexion" element={<Login logged={logged} setLogged={setLogged} user= {user} setUser={setUser} rank={rank} setRank={setRank} getLogCookies={getLogCookies}/>} />
                         <Route path="inscription" element={<Sign />} />
                         <Route path="domains" element={<Domains logged={logged}/>} />
                         <Route path="domains/modules/" element={<Modules logged={logged} user={user} />} />
