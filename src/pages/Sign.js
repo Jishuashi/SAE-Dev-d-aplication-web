@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "../styles/Login_signin.css";
 import emailLogo from "../assets/email.svg";
 import lock from "../assets/lock.svg";
@@ -7,7 +7,7 @@ import {Link, useNavigate} from "react-router-dom";
 import $ from "jquery";
 
 
-function Sign(){
+function Sign() {
     const [firstname, setFirstName] = useState("");
     const [name, setName] = useState("");
     const [login, setLogin] = useState("");
@@ -17,6 +17,10 @@ function Sign(){
     const [confPassword, setConfPassword] = useState("");
     const [result, setResult] = useState("");
     const [check, setCheck] = useState(false);
+    const [value1Captcha, setValue1Captcha] = useState("");
+    const [value2Captcha, setValue2Captcha] = useState("");
+    const [resultCaptcha, setResultCaptcha] = useState("");
+    const [captcha, setCaptcha] = useState("");
 
 
     var error = "";
@@ -57,12 +61,16 @@ function Sign(){
         }
     }
 
+    const handleChangeCaptcha = (e) => {
+        setCaptcha(e.target.value);
+    }
+
     const handleSumbit = (e) => {
         e.preventDefault();
         const form = $(e.target);
 
         // eslint-disable-next-line
-        if(confEmail != email || email === "" && confEmail === ""){
+        if (confEmail != email || email === "" && confEmail === "") {
             error = "Les adresses mail ne correspondent pas !";
             setResult(error);
             return;
@@ -81,14 +89,21 @@ function Sign(){
                         setResult(error);
                         return;
                     } else {
-                        $.ajax({
-                            type: "POST",
-                            url: form.attr("action"),
-                            data: form.serialize(),
-                            success(data) {
-                                setResult(data);
-                            },
-                        });
+                        if (captcha != resultCaptcha) {
+                            error = "Le captcha est incorrect";
+                            setResult(error);
+                            return;
+                        } else {
+                            $.ajax({
+                                type: "POST",
+                                url: form.attr("action"),
+                                data: form.serialize(),
+                                success(data) {
+                                    setResult(data);
+                                },
+                            });
+                        }
+
                     }
                 }
             }else {
@@ -106,34 +121,43 @@ function Sign(){
         const navigate = useNavigate();
 
         // eslint-disable-next-line
-        if(result == 1){
+        if (result == 1) {
             alert("Votre compte a bien été créé ! Connecter vous pour accéder à votre profil");
             navigate("/connexion");
-        }
-        else {
+        } else {
             return (<p className={'errorLogInSignIn'}>{result}</p>);
         }
     }
 
+    useEffect(
+        () => {
+            const firstValue = Math.floor(Math.random() * 30);
+            const secondValue = Math.floor(Math.random() * 30);
+            setValue1Captcha(firstValue);
+            setValue2Captcha(secondValue);
+            setResultCaptcha(firstValue + secondValue);
+        }, []);
 
-    return(
+
+    return (
         <div className="signIn">
-        <div className="card">
-        <h4 className="title">Inscription</h4>
-            <form
-                action="http://localhost:80/php/signin.php"
-                method="post"
-                onSubmit={(event) => handleSumbit(event)}
-            >
-            <div className="field">
-            <img src={human} alt="human" className="input-icon"></img>
-            <input autoComplete="off" id="firstname" placeholder="Prénom" className="input-field" name="firstname"
-                   type="text"
-                   value={firstname}
-                   onInput={(event) => handleChangeFirstName(event)}
-            />
-            </div>
-            <div className="field">
+            <div className="card">
+                <h4 className="title">Inscription</h4>
+                <form
+                    action="http://localhost:80/php/signin.php"
+                    method="post"
+                    onSubmit={(event) => handleSumbit(event)}
+                >
+                    <div className="field">
+                        <img src={human} alt="human" className="input-icon"></img>
+                        <input autoComplete="off" id="firstname" placeholder="Prénom" className="input-field"
+                               name="firstname"
+                               type="text"
+                               value={firstname}
+                               onInput={(event) => handleChangeFirstName(event)}
+                        />
+                    </div>
+                    <div className="field">
                 <img src={human} alt="human" className="input-icon"></img>
                 <input autoComplete="off" id="name" placeholder="Nom" className="input-field" name="lastname"
                        type="text"
@@ -174,20 +198,31 @@ function Sign(){
                        onInput={(event) => handleChangePass(event)}
                 />
             </div>
-            <div className="field">
-                <img src={lock} alt="lock" className="input-icon"></img>
-                <input autoComplete="off" id="logpassconf" placeholder="Confirmation de mot de passe" className="input-field" name="password"
-                       type="password"
-                       value={confPassword}
-                       onInput={(event) => handleChangeConfPass(event)}
-                />
-            </div>
-            <div className="useTerm">
-                <label htmlFor="check"><Link className="linkUse">j'ai lu et accepte les conditions générales d'utilisation</Link></label>
-                <input autoComplete="off" id="check" name="check" type="checkbox" onClick={(event) => changeCheck(event)}/>
-            </div>
-            <button className="btn" type="submit">S'inscrire</button>
-        </form>
+                    <div className="field">
+                        <img src={lock} alt="lock" className="input-icon"></img>
+                        <input autoComplete="off" id="logpassconf" placeholder="Confirmation de mot de passe"
+                               className="input-field" name="password"
+                               type="password"
+                               value={confPassword}
+                               onInput={(event) => handleChangeConfPass(event)}
+                        />
+                    </div>
+                    <div className="useTerm">
+                        <label htmlFor="check"><Link className="linkUse">j'ai lu et accepte les conditions générales
+                            d'utilisation</Link></label>
+                        <input autoComplete="off" id="check" name="check" type="checkbox"
+                               onClick={(event) => changeCheck(event)}/>
+                    </div>
+                    <div className="captcha">
+                        <label htmlFor="captcha">{`Que font ${value1Captcha} + ${value2Captcha} ?`}</label>
+                        <input
+                            type="number"
+                            id="captcha"
+                            onInput={(event) => handleChangeCaptcha(event)}
+                        />
+                    </div>
+                    <button className="btn" type="submit">S'inscrire</button>
+                </form>
             {Results()}
         <Link className="link_signIn" to="/connexion">Vous avez déjà un compte ?</Link>
     </div>

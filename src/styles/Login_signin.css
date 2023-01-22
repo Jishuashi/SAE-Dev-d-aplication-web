@@ -98,6 +98,27 @@
     color: white;
     font-size: 90%;
 }
+
+.captcha{
+    margin-top: .5rem;
+    color: white;
+}
+
+.captcha label{
+    margin-right: 20px;
+    font-size: 90%;
+}
+
+.captcha input{
+    align-items: center;
+    border: none;
+    justify-content: center;
+    background-color: #1f2029;
+    color: white;
+    border-radius: 4px;
+    padding: .5em 1em;
+}
+
 .errorLogInSignIn {
     color: lightcoral;
     font-weight: bold;
