@@ -10,7 +10,7 @@ $data = "";
 if(file_exists($path)){
     $file = fopen($path, "a") or die("Unable to open file!");
     $data = "
-    ".$user. ";" . $module . ";" . date("Y-m-d H:i:s");
+    ".$user. ";" . $module . ";" . date("Y-m-d").";".date("H:i:s");
 
 }else{
     $file = fopen($path, "a") or die("Impossible d'ouvrir le fichier");
@@ -18,7 +18,7 @@ if(file_exists($path)){
     "Identifiant";"Module";"Date"
 _END;
     $data = $data."
-    ".$user. ";" . $module . ";" . date("Y-m-d H:i:s");
+    ".$user. ";" . $module . ";" . date("Y-m-d").";".date("H:i:s");
 }
 
 fwrite($file, $data);
