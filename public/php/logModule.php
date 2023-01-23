@@ -15,7 +15,7 @@ if(file_exists($path)){
 }else{
     $file = fopen($path, "a") or die("Impossible d'ouvrir le fichier");
     $data = <<<_END
-    "Identifiant";"Module";"Date"
+    "Identifiant";"Module";"Date";"Heure"
 _END;
     $data = $data."
     ".$user. ";" . $module . ";" . date("Y-m-d").";".date("H:i:s");

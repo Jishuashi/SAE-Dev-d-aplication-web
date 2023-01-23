@@ -15,12 +15,22 @@
     $bd="sae";
 
 
+
+
     $connexion= mysqli_connect($serveur,$loginDB,$passwdDB)
         or die("Connexion impossible au serveur $serveur pour $loginDB");
 
     mysqli_select_db($connexion,$bd)
         or die("Impossible d'accéder à la base de données");
 
+
+    
+    $reqCheckUser = "SELECT * from user where login = '$login'";
+    if ($res = mysqli_query($connexion, $reqCheckUser)){
+	    if (mysqli_num_rows($res) > 0){
+	    	die("Utilisateur déjà inscrit !");
+	    }
+    }
     $reqinsertUser="INSERT into user(login, lastname, firstname, email)";
     $reqinsertPass="INSERT into passwd(password)";
     $reqinsertPerm="INSERT into permission(type)";
@@ -38,5 +48,6 @@
     mysqli_stmt_execute($reqprepareUser) or die('Error : USER');
     mysqli_stmt_execute($reqpreparePass) or die('Error: PASSWD');
     mysqli_stmt_execute($reqpreparePerm) or die('Error : PERM');
+    
 
     echo(1);
