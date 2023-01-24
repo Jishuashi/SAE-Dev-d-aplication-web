@@ -284,7 +284,91 @@ Le client ne comprend pas un module, un système d’aide est mis en place ou un
 ### a) Quel est le recours humain au fonctionnement du système ?
 >L’utilisateur doit activer le système de lui-même pour le changement de page en cliquant sur les boutons correspondant aux différentes pages.
 ### b) Quelles sont les exigences juridiques et politiques ?
->Etant donné que nous allons stocker des données, il faut respecter le RGPD (Règlement Général sur la Protection des Données)
+>Nous stockons les données à caractère personnel suivantes dans le cadre de l’inscription et de la
+connexion au site Internet sur lequel notre application se trouve : e-mail, nom, prénom ; et
+aucune considérée comme “particulièrement sensible”, suite au cahier des charges établi en
+accord avec le client.
+Nous avons opté pour une anonymisation des données complète (non pseudonymisée) grâce à
+l’algorithme de chiffrement MD5 qui est irréversible, ce qui rend ces données non considérées
+comme personnelles et les exigences du RGPD ne sont donc plus applicables. Nous n’utilisons
+pas ces données pour quoi que ce soit comme traitement donc cela n’est pas problématique.
+Nous stockons ces données depuis la création du compte pendant une durée indéterminée  
+Pendant le processus de développement, il faut penser constamment aux utilisateurs de
+l’application web et à leur vie privée. Il faut que la vie privée soit une partie centrale du
+développement. Il faut bien évidemment réfléchir aux langages à utiliser (ne pas utiliser un
+langage que l’on ne connaît pas pour éviter un risque de faille)  
+Nous avons effectué une analyse sur les risques du projet et avons rédigé un rapport sur la
+gestion des risques
+Nous avons mis en place des mots de passe sécurisés pour la connexion SSH au serveur et
+utilisons le journal natif des systèmes d’exploitation Linux afin de tracer l’accès à la machine
+pour savoir s’il y a eu des essais de connexion avec des informations erronées.  
+Nous utilisons le site Internet GitLab (pas l’application) afin de versionner notre code source
+ainsi que les différents documents, comme les cahiers des charges. Nous utilisons une
+authentification par clef SSH afin de s’y connecter pour effectuer des modifications, et nous
+avons paramétré les droits tels que seule l’équipe de développement ait les droits en écriture, car
+le client voulait y avoir accès, et a donc la lecture seule.  
+L’architecture du projet a été restreinte à une machine avec le système d’exploitation Debian par
+le client, qui sera au centre de tout d’où l’importance de le sécuriser.    
+Les utilisateurs doivent se connecter grâce à leur adresse e-mail. Pour améliorer la qualité de
+notre système d’authentification, en cas d’échec, l’adresse e-mail, mot de passe et adresse ip
+utilisés seront stockés dans un fichier .
+Nous avons choisi de ne pas utiliser de cookies de session pour améliorer la sécurité et
+confidentalité des utilisateurs même si cela veut dire qu’il faut se reconnecter si on ferme le
+navigateur et qu’on le re-ouvre. Il faut ouvrir le moins de ports possibles pour notre application.
+Si notre application utilise uniquement le protocole HTTPS, il faut simplement ouvrir le port 443
+voire le port 80 pour Internet et il faut bloquer les autres sur le pare-feu.
+En effet, ouvrir trop de ports peut être dangereux pour la sécurité de l’application car cela
+implique que plus de ports permettent d’accéder au site web ce qui le rend moins sécurisé.
+Pour notre base de données, il est nécessaire qu’elle soit sécurisée car elle va contenir toutes les
+informations sur les utilisateurs. Il faut donc restreindre l’accès à une adresse IP pour éviter que
+des personnes externes au développement de l’application puissent accéder à la base de données.
+Au cas où ils arrivent quand même à accéder à la base de données, il faut quand même
+restreindre l’accès grâce à un compte administrateur.  
+Comme dit précédemment, nous stockons le nom, prénom et e-mail de chaque utilisateur de
+l’application (également un historique de visites des modules mais cela n’est pas pertinent à
+l’égard des données personnelles car elles ne permettent pas de remonter à la personne en
+question), même si non traitées. Nous les supprimerions bien pour respecter le concept de
+minimisation de données mais cela a été explicitement demandé par le client lors de l’écriture du
+cahier des charges. Ces données sont stockées indéfiniment mais ne sont pas problématiques car
+chiffrées.  
+Dans n’importe quelle application dont la nôtre, il est nécessaire de bien documenter son code
+ainsi que son architecture.
+En effet, il ne faut pas seulement documenter son code car il faut que les développeurs puisse
+comprendre l’architecture tout au long du processus de développement et le fonctionnement
+global de tous les composants.
+De plus, la documentation doit être mis à jour au fil du processus de développement et ce, en
+même temps que le code sans oublier d’inclure une partie sécurité dans cette même
+documentation.
+Au delà de la documentation, il faut que le code soit de qualité avec des bons noms de
+variables et des fonctions explicites pour comprendre rapidement ce que chaque chose fait
+ainsi qu’un code qui ne soit pas redondant pour éviter trop d’efforts en cas d’erreur. Il faut aussi
+que le code soit bien indenté pour comprendre la structure du code plus rapidement grâce aux
+environnements de développement notamment (Visual Studio Code, pack Jetbrains …).  
+Pour une application et un livrable complet, il faut avoir un code source qui a une
+documentation mais aussi des tests.
+En effet, les tests peuvent se séparer en deux types :
+Les tests de développement vont nous permettre de bien vérifier que l’application web
+fonctionne en accord avec les spécifications demandées.
+Les tests de sécurité vont être des tests qui vont vérifier que l’application web fonctionne
+correctement et n’est pas vulnérable même quand on ne fait pas ce pourquoi elle est destinée.  
+Nous collectons des données personnelles, il est donc nécessaire d’informer les utilisateurs sur
+les données collectées à travers les mentions légales.  
+Pour notre application, il nous est demandé de faire des statistiques de visites du site et des
+différents modules. Il est donc nécessaire de faire preuve de prudence en terme de collecte des
+données et de traceurs.
+On peut être exempté de consentement pour les statistiques de fréquentation d’un site web. En
+effet, il faut que les traceurs de mesure d’audience servent uniquement à la mesure d’audience
+du site ou de l’application. Il ne faut pas que les traceurs permettent de suivre la navigation
+globale d’une personne sur d’autres sites web. Il faut aussi que les données statistiques
+récoltées soient anonymes.  
+Dans notre cas et compte tenu de nos compétences en terme de sécurité, nous n’allons pas
+réussir à tout protéger. Toutefois, nous pouvons effectuer quelques actions pour sécuriser au
+maximum notre application. Nous pouvons faire des requêtes préparées permettant d’éviter une
+injection SQL (une injection SQL permet de manipuler des bases de données pour pouvoir se
+connecter en tant qu’administrateur par exemple sans avoir le mot de passe). Nous pouvons
+aussi vérifier que tous les composants logiciels sont à jour régulièrement pour faire en sorte que
+les possibles failles soient réglées.
+
 ### c) Quelles sont les conséquences humaines de la réalisation du système ?
 >Il n’y a pas de conséquences humaines à la réalisation de ce système. En effet, des sites existent déjà pour calculer les modules que nous allons faire. 
 ### d) Quels sont les besoins en formation ?
