@@ -167,7 +167,7 @@ function Sign() {
             </div>
             <div className="field">
                 <img src={human} alt="human" className="input-icon"></img>
-                <input autoComplete="off" pattern="[A-Za-z]{3,16}" id="login"
+                <input autoComplete="off" pattern="[A-Za-z][0-9]{3,16}" id="login" title='3 à 16 caractères Alphanumérique uniquement'
                        placeholder="Identifant" className="input-field" name="login"
                        type="text"
                        value={login}
