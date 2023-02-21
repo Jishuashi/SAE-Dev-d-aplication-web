@@ -4,9 +4,10 @@ import {Link} from "react-router-dom";
 
 function Home({logged, user}) {
 
+var name = user.substring(0, user.indexOf('@'));
     if (logged) {
         return (<div className="Home">
-            <h1 className='hello'>{"Bonjour " + user}</h1>
+            <h1 className='hello'>{"Bonjour " + name}</h1>
             <iframe title="ytplayer" className="ytplayer" type="text/html" width="640" height="360"
                     src="https://www.youtube.com/embed/cPL-mO_xyAA"
                     frameBorder="0"/>

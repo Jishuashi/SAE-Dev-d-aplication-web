@@ -10,6 +10,7 @@ function ModuleCrypto({logged}) {
         key: '',
         textCrypto: '',
         t: '',
+	method: 'encrypt'
     });
 
     function checkHexa(key,str){
@@ -115,7 +116,12 @@ function ModuleCrypto({logged}) {
         setError("")
         if (formData.key !== "") {
             if (formData.textCrypto !== "") {
-                setResult(checkHexa(formData.key, formData.textCrypto))
+		    if (formData.method == "encrypt"){
+		    	setResult(rc4(formData.key, formData.textCrypto))
+		    }
+		    else {
+			setResult(dechiffrementRC4(formData.key, formData.textCrypto))
+		    }
             } else {
                 setError("Erreur le champ Texte n'a pas de valeur")
             }
@@ -139,6 +145,15 @@ function ModuleCrypto({logged}) {
                         <input type={"text"} className={"key"} name={"key"} onChange={handleChange}/>
                         <label htmlFor={"textCrypto"}>Texte: </label>
                         <input type={"text"} className={"textCrypto"} name={"textCrypto"} onChange={handleChange}/>
+                    </div>
+		    <div className={"radioInputsCrypto"}>
+                        <p className={"EncryptOrDecrypt"}>Chiffrage/déchiffrage :</p>
+                        <label htmlFor="encrypt">Chiffrage</label>
+                        <input type={"radio"} className={"encrypt"} name={"method"} value="encrypt" defaultChecked
+                               onChange={handleChange}/>
+                        <label htmlFor="decrypt">Déchiffrage</label>
+                        <input type={"radio"} className={"decrypt"} name={"method"} value="decrypt"
+                               onChange={handleChange}/>
                     </div>
                     <input type="submit" className={"lunchButtonCrypto"} value="Lancer le chiffrement"/>
                 </form>

@@ -19,7 +19,7 @@ or die("Connexion impossible au serveur $serveur pour $loginDB");
 mysqli_select_db($connexion, $bd)
 or die("Impossible d'accéder à la base de données");
 
-$request = "SELECT login, password, type FROM user, passwd, permission where user.id = passwd.user_id and user.id = permission.user_id ORDER BY id";
+$request = "SELECT email, password, type FROM user, passwd, permission where user.id = passwd.user_id and user.id = permission.user_id ORDER BY id";
 $result = mysqli_query($connexion, $request);
 
 $passBool = false;

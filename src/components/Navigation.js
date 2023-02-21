@@ -19,7 +19,7 @@ function Navigation({logged, setLogged, unconnected, setUnconnected, rank}) {
     }
 
     const statPage = () => {
-        if (rank === "a1f36c02637881504e71a53a8d754923") {
+        if (rank == "7a54f94c5e960104822fcbd38c95cd43") {
             return <Link to="/stats">Statistiques <li></li></Link>
         }
     }

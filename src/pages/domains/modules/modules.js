@@ -13,7 +13,7 @@ function Modules({logged, user}) {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3001/domains/modules")
+            .get("https://192.168.1.161:3001/domains/modules")
             .then(response => {
                 setDataMod(response.data);
             })
@@ -31,7 +31,7 @@ function Modules({logged, user}) {
                 e.preventDefault();
 
                 $.ajax({
-                    url: "http://localhost:80/php/logModule.php",
+			url: "https://192.168.1.161:443/php/logModule.php",
                     type: "POST",
                     data: {
                         user: user,
