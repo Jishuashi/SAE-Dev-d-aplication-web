@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "concurrently \"npm run start:react\" \"npm run start:node\"",
-    "start:react": "react-app-rewired start",
+    "start:react": "HTTPS=true react-scripts start",
     "start:node": "node src/server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",

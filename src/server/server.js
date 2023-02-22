@@ -4,9 +4,16 @@ const cors = require('cors');
 const https = require('https');
 const app = express();
 
+/*
+In local --> key = ./public/ssl/openssl.key
+             cert = ./public/ssl/openssl.crt
+
+For Deploy --> key = /etc/apache2/ssl/openssl.key'
+               crt = /etc/apache2/ssl/openssl.crt'
+ */
 var options = {
-	key: fs.readFileSync('/etc/apache2/ssl/openssl.key'),
-	cert: fs.readFileSync('/etc/apache2/ssl/openssl.crt')
+	key: fs.readFileSync('./public/ssl/openssl.key'),
+	cert: fs.readFileSync('./public/ssl/openssl.crt')
 }
 //middleware server to process json with fs
 app.use(cors({
@@ -38,3 +45,5 @@ async function parseJSON(path){
     let data = await fs.promises.readFile(path, 'utf8');
     return JSON.parse(data);
 }
+
+
