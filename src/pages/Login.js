@@ -69,13 +69,13 @@ function Login({logged, setLogged, user, setUser, setRank, rank, getLogCookies})
         <div className="card">
             <h4 className="title">S'identifier</h4>
             <form
-                action="http://localhost:80/php/login.php"
+                action="https://192.168.1.161:443/php/login.php"
                 method="post"
                 onSubmit={(event) => handleSumbit(event)}
             >
                 <div className="field">
                 <img src={human} alt="human" className="input-icon"></img>
-                <input autoComplete="off" id="login" placeholder="Identifant" className="input-field" name="login"
+                <input autoComplete="off" id="login" placeholder="Adresse mail" className="input-field" name="login"
                        type="text"
                        value={login}
                        onInput={(event) => handleChangeLogin(event)}

@@ -1,10 +1,20 @@
 const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
+const https = require('https');
 const app = express();
 
+var options = {
+	key: fs.readFileSync('/etc/apache2/ssl/openssl.key'),
+	cert: fs.readFileSync('/etc/apache2/ssl/openssl.crt')
+}
 //middleware server to process json with fs
-app.use(cors());
+app.use(cors({
+	origin: '*',
+	methods: ['GET','POST'],
+	allowedHeaders: ['Content-Type', 'Authorization']
+}));
+https.createServer(options,app).listen(3001);
 
 app.get('/domains', async (req, res) => {
     try {
@@ -28,7 +38,3 @@ async function parseJSON(path){
     let data = await fs.promises.readFile(path, 'utf8');
     return JSON.parse(data);
 }
-
-app.listen(3001, () => {
-    console.log('Server started listening on port 3001');
-});

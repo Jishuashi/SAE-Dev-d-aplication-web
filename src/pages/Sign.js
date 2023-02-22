@@ -69,12 +69,6 @@ function Sign() {
         e.preventDefault();
         const form = $(e.target);
 
-        // eslint-disable-next-line
-        if (confEmail != email || email === "" && confEmail === "") {
-            error = "Les adresses mail ne correspondent pas !";
-            setResult(error);
-            return;
-        }else {
             // eslint-disable-next-line
             const emailValidate = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -114,7 +108,6 @@ function Sign() {
             }
 
         }
-    };
 
     // eslint-disable-next-line
     const Results = () =>{
@@ -144,7 +137,7 @@ function Sign() {
             <div className="card">
                 <h4 className="title">Inscription</h4>
                 <form
-                    action="http://localhost:80/php/signin.php"
+                    action="https://192.168.1.161:443/php/signin.php"
                     method="post"
                     onSubmit={(event) => handleSumbit(event)}
                 >
@@ -165,16 +158,8 @@ function Sign() {
                        onInput={(event) => handleChangeName(event)}
                 />
             </div>
-            <div className="field">
-                <img src={human} alt="human" className="input-icon"></img>
-                <input autoComplete="off" pattern="[A-Za-z]{3,16}" id="login"
-                       placeholder="Identifant" className="input-field" name="login"
-                       type="text"
-                       value={login}
-                       onInput={(event) => handleChangeLogin(event)}
-                />
-                </div>
-            <div className="field">
+            
+	    <div className="field">
                 <img src={emailLogo} alt="email" className="input-icon"></img>
                 <input autoComplete="off" id="logemail1" placeholder="Email" className="input-field" name="email"
                        type="email"
@@ -182,14 +167,8 @@ function Sign() {
                        onInput={(event) => handleChangeEmail(event)}
                 />
             </div>
-            <div className="field">
-                <img src={emailLogo} alt="email" className="input-icon"></img>
-                <input autoComplete="off" id="logemail2" placeholder="Confirmation d'email" className="input-field" name="email"
-                       type="email"
-                       value={confEmail}
-                       onInput={(event) => handleChangeConfEmail(event)}
-                />
-            </div>
+            
+                       
             <div className="field">
                 <img src={lock} alt="lock" className="input-icon"></img>
                 <input autoComplete="off" id="logpass" placeholder="Mot de passe" className="input-field" name="password"

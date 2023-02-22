@@ -4,7 +4,6 @@
 
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
-    $login = $_POST['login'];
     $email = $_POST['email'];
     $passwd = md5($_POST['password']);
     $perm = 'user';
@@ -25,13 +24,13 @@
 
 
     
-    $reqCheckUser = "SELECT * from user where login = '$login'";
+    $reqCheckUser = "SELECT * from user where email = '$email'";
     if ($res = mysqli_query($connexion, $reqCheckUser)){
 	    if (mysqli_num_rows($res) > 0){
 	    	die("Utilisateur déjà inscrit !");
 	    }
     }
-    $reqinsertUser="INSERT into user(login, lastname, firstname, email)";
+    $reqinsertUser="INSERT into user(lastname, firstname, email)";
     $reqinsertPass="INSERT into passwd(password)";
     $reqinsertPerm="INSERT into permission(type)";
     $reqinsertUser.="VALUES(?,?,?,?)";
@@ -42,7 +41,7 @@
     $reqpreparePass=mysqli_prepare($connexion,$reqinsertPass);
     $reqpreparePerm=mysqli_prepare($connexion,$reqinsertPerm);
 
-    mysqli_stmt_bind_param($reqprepareUser,'ssss', $login, $lastname, $firstname, $email);
+    mysqli_stmt_bind_param($reqprepareUser,'sss',$lastname, $firstname, $email);
     mysqli_stmt_bind_param($reqpreparePass,'s',$passwd);
     mysqli_stmt_bind_param($reqpreparePerm,'s',$perm);
     mysqli_stmt_execute($reqprepareUser) or die('Error : USER');

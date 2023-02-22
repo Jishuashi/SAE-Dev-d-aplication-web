@@ -12,7 +12,7 @@ function Profile({rank, user, logged}) {
     const getProfile = () => {
         $.ajax({
             type: "POST",
-            url: "http://localhost:80/php/user.php",
+            url: "https://192.168.1.161:443/php/user.php",
             data: {login: user},
             success(data) {
                 setResultUser(data);
@@ -20,7 +20,7 @@ function Profile({rank, user, logged}) {
         });
 
         const lArrayResult = resultUser.split(";");
-        const lArrayFirtCol = ['Identifiant :', 'Nom :', 'Prénom :', 'Email :'];
+        const lArrayFirtCol = ['Nom :', 'Prénom :', 'Email :'];
         let lArrayProfil = [];
         let lRetrun = [];
         lArrayProfil = lArrayResult[0].split(" ");
@@ -40,7 +40,7 @@ function Profile({rank, user, logged}) {
     const getUsers = () => {
         $.ajax({
             type: "POST",
-            url: "http://localhost:80/php/admin.php",
+            url: "https://192.168.1.161:443/php/admin.php",
             success(data) {
                 setResultAdmin(data);
             },
@@ -70,7 +70,7 @@ function Profile({rank, user, logged}) {
             console.log(lArrayUsers[x][0]);
             $.ajax({
                 type: "POST",
-                url: "http://localhost:80/php/delUser.php",
+                url: "https://192.168.1.161:443/php/delUser.php",
                 data: {login: lArrayUsers[x][0]},
                 success(data) {
                     console.log(data);
@@ -84,7 +84,7 @@ function Profile({rank, user, logged}) {
             let lCurrLine = [];
             if (lArrayUsers[i][0] !== "gestion") {
                 for (let j = 0; j < lArrayUsers[i].length; j++) {
-                    if (j % 4 === 3) {
+                    if (j % 4 === 3) { //voir peut-être pour mettre 4 à la place de 3
                         lCurrLine.push(<td id='col' className={`coll_${j}`} key={j^2}>{lArrayUsers[i][j]}</td>, <td
                             className={`coll_${j + 1}`} key={(j+i)}>
                             <button id={i}>supprimer</button>
@@ -102,7 +102,7 @@ function Profile({rank, user, logged}) {
     };
 
     if (logged) {
-        if (rank == "85cb945ba1643454c2389b800efe0497") {
+        if (rank == "c69f204a43c20dae05b94f585b6a78cc") {
             return (
                 <div className={"userProfileNormal"}>
                     <h1 className={"titleProfile"}>Profile</h1>
@@ -117,14 +117,13 @@ function Profile({rank, user, logged}) {
                     </table>
                 </div>
             );
-        } else if (rank == "a1f36c02637881504e71a53a8d754923") {
+        } else if (rank == "7a54f94c5e960104822fcbd38c95cd43") {
             // Admin profile
             return (<div className={"userProfileAdmin"}>
                 <h1 className={"titleProfile"}>Liste des utilisateurs :</h1>
                 <table>
                     <thead>
                     <tr>
-                        <td className={"coll_0"}>Identifiant</td>
                         <td className={"coll_1"}>Nom</td>
                         <td className={"coll_2"}>Prénom</td>
                         <td className={"coll_3"}>Email</td>

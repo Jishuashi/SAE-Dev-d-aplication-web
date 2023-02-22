@@ -2,22 +2,20 @@ import React, {useState, useEffect} from "react";
 import '../styles/domains.css';
 import axios from "axios";
 import {createSearchParams, useNavigate} from "react-router-dom";
-import domain from "../assets/domain.png"
+import domain from "../assets/domain.png";
+import $ from "jquery";
 
 function Domains({logged}) {
     const [data, setData] = useState([]);
 
     //useffect is used to the json parsed data from the middleware Node.js server
-    useEffect(() => {
-        axios
-            .get("http://localhost:3001/domains")
-            .then(response => {
-                setData(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }, []);
+        $.ajax({
+	    type: "GET",
+	    url: 'https://192.168.1.161:3001/domains',
+	    success(data){
+		setData(data);
+	    }
+	});
 
     const notAllowed = () => {
         return navigate("/notAllowed");
