@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/sae3-01-dev-d-apli.iml" filepath="$PROJECT_DIR$/.idea/sae3-01-dev-d-apli.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/ScriptSea.iml" filepath="$PROJECT_DIR$/.idea/ScriptSea.iml" />
+>>>>>>> origin/brandon
     </modules>
   </component>
 </project>
