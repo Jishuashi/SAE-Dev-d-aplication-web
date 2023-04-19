@@ -9,7 +9,7 @@ import {redirect} from "react-router";
 
 function Login({logged, setLogged, user, setUser, setRank, rank, getLogCookies}) {
 
-    const [login, setLogin] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [result , setResult] = useState("");
 
@@ -31,8 +31,8 @@ function Login({logged, setLogged, user, setUser, setRank, rank, getLogCookies})
         });
     };
 
-    const handleChangeLogin = (e) => {
-        setLogin(e.target.value);
+    const handleChangeEmail = (e) => {
+        setEmail(e.target.value);
     };
 
     const handleChangePass = (e) => {
@@ -55,7 +55,7 @@ function Login({logged, setLogged, user, setUser, setRank, rank, getLogCookies})
 
         if(lResult == 1){
             updateLogged(true);
-            setUser(login);
+            setUser(email);
             setRank(md5(lStrRank));
 
             navigate("/");
@@ -69,7 +69,7 @@ function Login({logged, setLogged, user, setUser, setRank, rank, getLogCookies})
         <div className="card">
             <h4 className="title">S'identifier</h4>
             <form
-                action="https://192.168.1.161:443/php/login.php"
+                action="http://localhost:8000/php/login.php"
                 method="post"
                 onSubmit={(event) => handleSumbit(event)}
             >
@@ -77,8 +77,8 @@ function Login({logged, setLogged, user, setUser, setRank, rank, getLogCookies})
                 <img src={human} alt="human" className="input-icon"></img>
                 <input autoComplete="off" id="login" placeholder="Adresse mail" className="input-field" name="login"
                        type="text"
-                       value={login}
-                       onInput={(event) => handleChangeLogin(event)}
+                       value={email}
+                       onInput={(event) => handleChangeEmail(event)}
                 />
                 </div>
                 <div className="field">

@@ -11,7 +11,7 @@ function Domains({logged}) {
     //useffect is used to the json parsed data from the middleware Node.js server
         $.ajax({
 	    type: "GET",
-	    url: 'https://192.168.1.161:3001/domains',
+	    url: 'http://localhost:3001/domains',
 	    success(data){
 		setData(data);
 	    }

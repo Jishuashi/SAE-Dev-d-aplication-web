@@ -1,19 +1,43 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 
-$user = $_POST['login'];
 
-$serveur="localhost";
-$loginDB="sae";
-$passwdDB="sae";
-$bd="sae";
+$email = $_POST['email'];
 
-$connexion = mysqli_connect($serveur, $loginDB, $passwdDB)
-or die("Connexion impossible au serveur $serveur pour $loginDB");
+// Connexion à la base de données
+$dbhost = 'localhost';
+$dbname = 'sae';
+$dbuser = 'sae';
+$dbpass = 'sae';
+$dsn = "mysql:host=$dbhost;dbname=$dbname;charset=utf8mb4";
+$options = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES => false,
+];
+try {
+    $pdo = new PDO($dsn, $dbuser, $dbpass, $options);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+}
 
-mysqli_select_db($connexion, $bd)
-or die("Impossible d'accéder à la base de données");
 
-$request="DELETE u, p, pa FROM user u JOIN permission p ON u.id = p.user_id JOIN passwd pa ON u.id = pa.user_id WHERE u.email = '$user'";
-$result = mysqli_query($connexion, $request) or die("Impossible de supprimer l'utilisateur");
+// Vérification si l'utilisateur existe dans la table "user"
+$stmt = $pdo->prepare("SELECT id FROM user WHERE email = ?");
+$stmt->execute([$email]);
+$user = $stmt->fetch();
+if (!$user) {
+    echo "Cet utilisateur n'existe pas.";
+} else {
+    $user_id = $user['id'];
 
+    // Suppression du mot de passe correspondant de la table "password"
+    $stmt = $pdo->prepare("DELETE FROM password WHERE id = ?");
+    $stmt->execute([$user_id]);
+
+    // Suppression de l'utilisateur de la table "user"
+    $stmt = $pdo->prepare("DELETE FROM user WHERE email = ?");
+    $stmt->execute([$email]);
+
+    echo "L'utilisateur a été supprimé avec succès.";
+}

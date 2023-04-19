@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
 const https = require('https');
+const http = require("http");
 const app = express();
 
 /*
@@ -11,17 +12,14 @@ In local --> key = ./public/ssl/openssl.key
 For Deploy --> key = /etc/apache2/ssl/openssl.key'
                crt = /etc/apache2/ssl/openssl.crt'
  */
-var options = {
-	key: fs.readFileSync('./public/ssl/openssl.key'),
-	cert: fs.readFileSync('./public/ssl/openssl.crt')
-}
+
 //middleware server to process json with fs
 app.use(cors({
 	origin: '*',
 	methods: ['GET','POST'],
 	allowedHeaders: ['Content-Type', 'Authorization']
 }));
-https.createServer(options,app).listen(3001);
+http.createServer(app).listen(3001);
 
 app.get('/domains', async (req, res) => {
     try {

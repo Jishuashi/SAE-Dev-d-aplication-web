@@ -25,6 +25,8 @@ function Sign() {
 
     var error = "";
 
+    var navigate = useNavigate();
+
     const handleChangeFirstName = (e) => {
         setFirstName(e.target.value);
     };
@@ -94,6 +96,8 @@ function Sign() {
                                 data: form.serialize(),
                                 success(data) {
                                     setResult(data);
+                                    alert('Le compte à bien été crée veuillez vous connecter !!');
+                                    navigate('/connexion');
                                 },
                             });
                         }
@@ -137,7 +141,7 @@ function Sign() {
             <div className="card">
                 <h4 className="title">Inscription</h4>
                 <form
-                    action="https://192.168.1.161:443/php/signin.php"
+                    action="http://localhost:8000/php/signin.php"
                     method="post"
                     onSubmit={(event) => handleSumbit(event)}
                 >

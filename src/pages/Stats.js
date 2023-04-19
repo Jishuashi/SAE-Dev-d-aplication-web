@@ -23,7 +23,7 @@ function Stats() {
     const getLog = () => {
         $.ajax({
             type: "POST",
-            url: "https://192.168.1.161:443/php/getLog.php",
+            url: "https://localhost:8000/php/getLog.php",
             success(data) {
                 setResult(data);
             },
@@ -85,7 +85,7 @@ function Stats() {
     const getStatModule = (module) => {
         $.ajax({
             type: "POST",
-            url: "https://192.168.1.161:443/php/getLog.php",
+            url: "http://localhost:8000/php/getLog.php",
             success(data) {
                 setStat(data);
             },
@@ -118,7 +118,7 @@ function Stats() {
     const getNbUser = () => {
         $.ajax({
             type: "POST",
-            url: "https://192.168.1.161:443/php/getNbUser.php",
+            url: "http://localhost:8000/php/getNbUser.php",
             success(data) {
                 setNbUser(data);
             },

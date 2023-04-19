@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 
-$login = $_POST['login'];
+$email = $_POST['email'];
 
 $serveur = "localhost";
 $loginDB = "sae";
@@ -14,9 +14,9 @@ or die("Connexion impossible au serveur $serveur pour $loginDB");
 mysqli_select_db($connexion, $bd)
 or die("Impossible d'accéder à la base de données");
 
-$request = "SELECT login, lastname, firstname, email FROM user where login = '$login'";
+$request = "SELECT lastname, firstname, email FROM user where email = '$email'";
 $result = mysqli_query($connexion, $request);
 
 while ($line = mysqli_fetch_row($result)) {
-    echo $line[0] . " " . $line[1] . " " . $line[2] . " " . $line[3] . ";";
+    echo $line[0] . " " . $line[1] . " " . $line[2] . " ";
 }

@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import md5 from "md5";
 import '../styles/Profile.css';
 import $ from "jquery";
 
@@ -12,8 +13,8 @@ function Profile({rank, user, logged}) {
     const getProfile = () => {
         $.ajax({
             type: "POST",
-            url: "https://192.168.1.161:443/php/user.php",
-            data: {login: user},
+            url: "http://localhost:8000/php/user.php",
+            data: {email: user},
             success(data) {
                 setResultUser(data);
             },
@@ -40,7 +41,7 @@ function Profile({rank, user, logged}) {
     const getUsers = () => {
         $.ajax({
             type: "POST",
-            url: "https://192.168.1.161:443/php/admin.php",
+            url: "http://localhost:8000/php/admin.php",
             success(data) {
                 setResultAdmin(data);
             },
@@ -67,11 +68,11 @@ function Profile({rank, user, logged}) {
             }
 
             lArrayUsers.splice(-1, 1);
-            console.log(lArrayUsers[x][0]);
+            console.log(lArrayUsers[x][2]);
             $.ajax({
                 type: "POST",
-                url: "https://192.168.1.161:443/php/delUser.php",
-                data: {login: lArrayUsers[x][0]},
+                url: "http://localhost:8000/php/delUser.php",
+                data: {email: lArrayUsers[x][2]},
                 success(data) {
                     console.log(data);
                 }
@@ -82,9 +83,9 @@ function Profile({rank, user, logged}) {
 
         for (let i = 0; i < lArrayUsers.length; i++) {
             let lCurrLine = [];
-            if (lArrayUsers[i][0] !== "gestion") {
+            if (lArrayUsers[i][0] !== "Gestion") {
                 for (let j = 0; j < lArrayUsers[i].length; j++) {
-                    if (j % 4 === 3) { //voir peut-être pour mettre 4 à la place de 3
+                    if (j % 3 === 2) { //voir peut-être pour mettre 4 à la place de 3
                         lCurrLine.push(<td id='col' className={`coll_${j}`} key={j^2}>{lArrayUsers[i][j]}</td>, <td
                             className={`coll_${j + 1}`} key={(j+i)}>
                             <button id={i}>supprimer</button>
@@ -102,7 +103,7 @@ function Profile({rank, user, logged}) {
     };
 
     if (logged) {
-        if (rank == "c69f204a43c20dae05b94f585b6a78cc") {
+        if (rank == 'de0b33cd23e223ecf0cdbc7da70dff94') {
             return (
                 <div className={"userProfileNormal"}>
                     <h1 className={"titleProfile"}>Profile</h1>
@@ -117,7 +118,7 @@ function Profile({rank, user, logged}) {
                     </table>
                 </div>
             );
-        } else if (rank == "7a54f94c5e960104822fcbd38c95cd43") {
+        } else if (rank == 'eafd5202ae1185708147266c204aff34') {
             // Admin profile
             return (<div className={"userProfileAdmin"}>
                 <h1 className={"titleProfile"}>Liste des utilisateurs :</h1>
